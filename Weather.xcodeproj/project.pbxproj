@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00B09C9C1C6FAC8600A90A81 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B09C7A1C6FAC2D00A90A81 /* ReactiveCocoa.framework */; };
+		00B09C9D1C6FAC8600A90A81 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00B09C7A1C6FAC2D00A90A81 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		00B09CA11C6FAC8F00A90A81 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B09C911C6FAC4600A90A81 /* Result.framework */; };
+		00B09CA21C6FAC8F00A90A81 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00B09C911C6FAC4600A90A81 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		00E33E2A1C6E36FE007C5A7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E33E291C6E36FE007C5A7D /* AppDelegate.swift */; };
 		00E33E2C1C6E36FE007C5A7D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E33E2B1C6E36FE007C5A7D /* ViewController.swift */; };
 		00E33E2F1C6E36FE007C5A7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00E33E2D1C6E36FE007C5A7D /* Main.storyboard */; };
@@ -17,6 +21,118 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		00B09C751C6FAC2D00A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D04725EA19E49ED7006002AA;
+			remoteInfo = "ReactiveCocoa-Mac";
+		};
+		00B09C771C6FAC2D00A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D04725F519E49ED7006002AA;
+			remoteInfo = "ReactiveCocoa-MacTests";
+		};
+		00B09C791C6FAC2D00A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D047260C19E49F82006002AA;
+			remoteInfo = "ReactiveCocoa-iOS";
+		};
+		00B09C7B1C6FAC2D00A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D047261619E49F82006002AA;
+			remoteInfo = "ReactiveCocoa-iOSTests";
+		};
+		00B09C7D1C6FAC2D00A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A9B315541B3940610001CB9C;
+			remoteInfo = "ReactiveCocoa-watchOS";
+		};
+		00B09C7F1C6FAC2D00A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 57A4D2411BA13D7A00F7D4B1;
+			remoteInfo = "ReactiveCocoa-tvOS";
+		};
+		00B09C8C1C6FAC4600A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C811C6FAC4600A90A81 /* Result.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D45480571A9572F5009D7229;
+			remoteInfo = "Result-Mac";
+		};
+		00B09C8E1C6FAC4600A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C811C6FAC4600A90A81 /* Result.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D45480671A9572F5009D7229;
+			remoteInfo = "Result-MacTests";
+		};
+		00B09C901C6FAC4600A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C811C6FAC4600A90A81 /* Result.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D454807D1A957361009D7229;
+			remoteInfo = "Result-iOS";
+		};
+		00B09C921C6FAC4600A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C811C6FAC4600A90A81 /* Result.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D45480871A957362009D7229;
+			remoteInfo = "Result-iOSTests";
+		};
+		00B09C941C6FAC4600A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C811C6FAC4600A90A81 /* Result.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 57FCDE471BA280DC00130C48;
+			remoteInfo = "Result-tvOS";
+		};
+		00B09C961C6FAC4600A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C811C6FAC4600A90A81 /* Result.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 57FCDE541BA280E000130C48;
+			remoteInfo = "Result-tvOSTests";
+		};
+		00B09C981C6FAC4600A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C811C6FAC4600A90A81 /* Result.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D03579A31B2B788F005D26AE;
+			remoteInfo = "Result-watchOS";
+		};
+		00B09C9A1C6FAC4600A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C811C6FAC4600A90A81 /* Result.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D03579B01B2B78A1005D26AE;
+			remoteInfo = "Result-watchOSTests";
+		};
+		00B09C9E1C6FAC8600A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D047260B19E49F82006002AA;
+			remoteInfo = "ReactiveCocoa-iOS";
+		};
+		00B09CA31C6FAC8F00A90A81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00B09C811C6FAC4600A90A81 /* Result.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D454807C1A957361009D7229;
+			remoteInfo = "Result-iOS";
+		};
 		00E33E3B1C6E36FF007C5A7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 00E33E1E1C6E36FE007C5A7D /* Project object */;
@@ -33,7 +149,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		00B09CA01C6FAC8600A90A81 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				00B09C9D1C6FAC8600A90A81 /* ReactiveCocoa.framework in Embed Frameworks */,
+				00B09CA21C6FAC8F00A90A81 /* Result.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = ReactiveCocoa/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
+		00B09C811C6FAC4600A90A81 /* Result.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Result.xcodeproj; path = ReactiveCocoa/Carthage/Checkouts/Result/Result.xcodeproj; sourceTree = "<group>"; };
 		00E33E261C6E36FE007C5A7D /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E33E291C6E36FE007C5A7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00E33E2B1C6E36FE007C5A7D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +187,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00B09C9C1C6FAC8600A90A81 /* ReactiveCocoa.framework in Frameworks */,
+				00B09CA11C6FAC8F00A90A81 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,9 +209,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00B09C6B1C6FABF800A90A81 /* ReactiveCocoa */ = {
+			isa = PBXGroup;
+			children = (
+				00B09C811C6FAC4600A90A81 /* Result.xcodeproj */,
+				00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */,
+			);
+			name = ReactiveCocoa;
+			sourceTree = "<group>";
+		};
+		00B09C6D1C6FAC2C00A90A81 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00B09C761C6FAC2D00A90A81 /* ReactiveCocoa.framework */,
+				00B09C781C6FAC2D00A90A81 /* ReactiveCocoaTests.xctest */,
+				00B09C7A1C6FAC2D00A90A81 /* ReactiveCocoa.framework */,
+				00B09C7C1C6FAC2D00A90A81 /* ReactiveCocoaTests.xctest */,
+				00B09C7E1C6FAC2D00A90A81 /* ReactiveCocoa.framework */,
+				00B09C801C6FAC2D00A90A81 /* ReactiveCocoa.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00B09C821C6FAC4600A90A81 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00B09C8D1C6FAC4600A90A81 /* Result.framework */,
+				00B09C8F1C6FAC4600A90A81 /* Result-MacTests.xctest */,
+				00B09C911C6FAC4600A90A81 /* Result.framework */,
+				00B09C931C6FAC4600A90A81 /* Result-iOSTests.xctest */,
+				00B09C951C6FAC4600A90A81 /* Result.framework */,
+				00B09C971C6FAC4600A90A81 /* Result-tvOSTests.xctest */,
+				00B09C991C6FAC4600A90A81 /* Result.framework */,
+				00B09C9B1C6FAC4600A90A81 /* Result-watchOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		00E33E1D1C6E36FE007C5A7D = {
 			isa = PBXGroup;
 			children = (
+				00B09C6B1C6FABF800A90A81 /* ReactiveCocoa */,
 				00E33E281C6E36FE007C5A7D /* Weather */,
 				00E33E3D1C6E36FF007C5A7D /* WeatherTests */,
 				00E33E481C6E36FF007C5A7D /* WeatherUITests */,
@@ -135,10 +308,13 @@
 				00E33E221C6E36FE007C5A7D /* Sources */,
 				00E33E231C6E36FE007C5A7D /* Frameworks */,
 				00E33E241C6E36FE007C5A7D /* Resources */,
+				00B09CA01C6FAC8600A90A81 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				00B09C9F1C6FAC8600A90A81 /* PBXTargetDependency */,
+				00B09CA41C6FAC8F00A90A81 /* PBXTargetDependency */,
 			);
 			name = Weather;
 			productName = Weather;
@@ -215,6 +391,16 @@
 			mainGroup = 00E33E1D1C6E36FE007C5A7D;
 			productRefGroup = 00E33E271C6E36FE007C5A7D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 00B09C6D1C6FAC2C00A90A81 /* Products */;
+					ProjectRef = 00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */;
+				},
+				{
+					ProductGroup = 00B09C821C6FAC4600A90A81 /* Products */;
+					ProjectRef = 00B09C811C6FAC4600A90A81 /* Result.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				00E33E251C6E36FE007C5A7D /* Weather */,
@@ -223,6 +409,107 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		00B09C761C6FAC2D00A90A81 /* ReactiveCocoa.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveCocoa.framework;
+			remoteRef = 00B09C751C6FAC2D00A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00B09C781C6FAC2D00A90A81 /* ReactiveCocoaTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ReactiveCocoaTests.xctest;
+			remoteRef = 00B09C771C6FAC2D00A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00B09C7A1C6FAC2D00A90A81 /* ReactiveCocoa.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveCocoa.framework;
+			remoteRef = 00B09C791C6FAC2D00A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00B09C7C1C6FAC2D00A90A81 /* ReactiveCocoaTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ReactiveCocoaTests.xctest;
+			remoteRef = 00B09C7B1C6FAC2D00A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00B09C7E1C6FAC2D00A90A81 /* ReactiveCocoa.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveCocoa.framework;
+			remoteRef = 00B09C7D1C6FAC2D00A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00B09C801C6FAC2D00A90A81 /* ReactiveCocoa.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveCocoa.framework;
+			remoteRef = 00B09C7F1C6FAC2D00A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00B09C8D1C6FAC4600A90A81 /* Result.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Result.framework;
+			remoteRef = 00B09C8C1C6FAC4600A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00B09C8F1C6FAC4600A90A81 /* Result-MacTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Result-MacTests.xctest";
+			remoteRef = 00B09C8E1C6FAC4600A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00B09C911C6FAC4600A90A81 /* Result.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Result.framework;
+			remoteRef = 00B09C901C6FAC4600A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00B09C931C6FAC4600A90A81 /* Result-iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Result-iOSTests.xctest";
+			remoteRef = 00B09C921C6FAC4600A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00B09C951C6FAC4600A90A81 /* Result.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Result.framework;
+			remoteRef = 00B09C941C6FAC4600A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00B09C971C6FAC4600A90A81 /* Result-tvOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Result-tvOSTests.xctest";
+			remoteRef = 00B09C961C6FAC4600A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00B09C991C6FAC4600A90A81 /* Result.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Result.framework;
+			remoteRef = 00B09C981C6FAC4600A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		00B09C9B1C6FAC4600A90A81 /* Result-watchOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Result-watchOSTests.xctest";
+			remoteRef = 00B09C9A1C6FAC4600A90A81 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E33E241C6E36FE007C5A7D /* Resources */ = {
@@ -280,6 +567,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		00B09C9F1C6FAC8600A90A81 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ReactiveCocoa-iOS";
+			targetProxy = 00B09C9E1C6FAC8600A90A81 /* PBXContainerItemProxy */;
+		};
+		00B09CA41C6FAC8F00A90A81 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Result-iOS";
+			targetProxy = 00B09CA31C6FAC8F00A90A81 /* PBXContainerItemProxy */;
+		};
 		00E33E3C1C6E36FF007C5A7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 00E33E251C6E36FE007C5A7D /* Weather */;
@@ -397,6 +694,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bi.weather.Weather;
@@ -408,6 +706,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bi.weather.Weather;
@@ -482,6 +781,7 @@
 				00E33E501C6E36FF007C5A7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		00E33E511C6E36FF007C5A7D /* Build configuration list for PBXNativeTarget "WeatherTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +790,7 @@
 				00E33E531C6E36FF007C5A7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		00E33E541C6E36FF007C5A7D /* Build configuration list for PBXNativeTarget "WeatherUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +799,7 @@
 				00E33E561C6E36FF007C5A7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
