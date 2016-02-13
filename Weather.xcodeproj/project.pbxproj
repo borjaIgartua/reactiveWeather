@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00657DD41C6FB23000188BB7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00657DD31C6FB23000188BB7 /* Constants.swift */; };
+		00657DD71C6FB2F500188BB7 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00657DD61C6FB2F500188BB7 /* City.swift */; };
+		00657DDA1C6FB47B00188BB7 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00657DD91C6FB47B00188BB7 /* Weather.swift */; };
 		00B09C9C1C6FAC8600A90A81 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B09C7A1C6FAC2D00A90A81 /* ReactiveCocoa.framework */; };
 		00B09C9D1C6FAC8600A90A81 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00B09C7A1C6FAC2D00A90A81 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		00B09CA11C6FAC8F00A90A81 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B09C911C6FAC4600A90A81 /* Result.framework */; };
@@ -165,6 +168,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00657DD31C6FB23000188BB7 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Code/Constants/Constants.swift; sourceTree = "<group>"; };
+		00657DD61C6FB2F500188BB7 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = City.swift; path = Code/Model/City.swift; sourceTree = "<group>"; };
+		00657DD91C6FB47B00188BB7 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Weather.swift; path = Code/Model/Weather.swift; sourceTree = "<group>"; };
 		00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveCocoa.xcodeproj; path = ReactiveCocoa/ReactiveCocoa.xcodeproj; sourceTree = "<group>"; };
 		00B09C811C6FAC4600A90A81 /* Result.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Result.xcodeproj; path = ReactiveCocoa/Carthage/Checkouts/Result/Result.xcodeproj; sourceTree = "<group>"; };
 		00E33E261C6E36FE007C5A7D /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +215,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00657DC51C6FB1F300188BB7 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				00657DD51C6FB2E000188BB7 /* Model */,
+				00657DD21C6FB20B00188BB7 /* Constants */,
+			);
+			name = Code;
+			sourceTree = "<group>";
+		};
+		00657DD21C6FB20B00188BB7 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				00657DD31C6FB23000188BB7 /* Constants.swift */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
+		00657DD51C6FB2E000188BB7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				00657DD61C6FB2F500188BB7 /* City.swift */,
+				00657DD91C6FB47B00188BB7 /* Weather.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		00B09C6B1C6FABF800A90A81 /* ReactiveCocoa */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +302,7 @@
 		00E33E281C6E36FE007C5A7D /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				00657DC51C6FB1F300188BB7 /* Code */,
 				00E33E291C6E36FE007C5A7D /* AppDelegate.swift */,
 				00E33E2B1C6E36FE007C5A7D /* ViewController.swift */,
 				00E33E2D1C6E36FE007C5A7D /* Main.storyboard */,
@@ -545,6 +578,9 @@
 			files = (
 				00E33E2C1C6E36FE007C5A7D /* ViewController.swift in Sources */,
 				00E33E2A1C6E36FE007C5A7D /* AppDelegate.swift in Sources */,
+				00657DD71C6FB2F500188BB7 /* City.swift in Sources */,
+				00657DD41C6FB23000188BB7 /* Constants.swift in Sources */,
+				00657DDA1C6FB47B00188BB7 /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
