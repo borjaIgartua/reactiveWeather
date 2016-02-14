@@ -24,4 +24,22 @@ struct City {
         self.weather = weather
     }
     
+    init(responseData: JSON) {
+        
+        self.id = responseData["id"].stringValue
+        self.name = responseData["name"].stringValue
+
+        let cityCoordData = responseData["coord"].dictionaryValue
+        let latitude = cityCoordData["lat"]?.doubleValue
+        let longitude = cityCoordData["lon"]?.doubleValue
+        
+        if let latitude = latitude {
+            if let longitude = longitude {
+                self.location = CLLocation(latitude: latitude, longitude: longitude)
+            }
+        }
+        
+        self.weather = Weather(responseData: responseData)
+    }
+    
 }

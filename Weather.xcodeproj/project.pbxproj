@@ -24,6 +24,7 @@
 		00E33E341C6E36FE007C5A7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00E33E321C6E36FE007C5A7D /* LaunchScreen.storyboard */; };
 		00E33E3F1C6E36FF007C5A7D /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E33E3E1C6E36FF007C5A7D /* WeatherTests.swift */; };
 		00E33E4A1C6E36FF007C5A7D /* WeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E33E491C6E36FF007C5A7D /* WeatherUITests.swift */; };
+		00FCECB51C70D9BF00EFBE12 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FCECB41C70D9BF00EFBE12 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +193,7 @@
 		00E33E451C6E36FF007C5A7D /* WeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E33E491C6E36FF007C5A7D /* WeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUITests.swift; sourceTree = "<group>"; };
 		00E33E4B1C6E36FF007C5A7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00FCECB41C70D9BF00EFBE12 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Code/Libraries/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +226,7 @@
 		00657DC51C6FB1F300188BB7 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				00FCECA71C70D9B500EFBE12 /* Libraries */,
 				00657DE21C6FBC4D00188BB7 /* Extensions */,
 				00657DDD1C6FBA0700188BB7 /* Service */,
 				00657DD51C6FB2E000188BB7 /* Model */,
@@ -354,6 +357,14 @@
 				00E33E4B1C6E36FF007C5A7D /* Info.plist */,
 			);
 			path = WeatherUITests;
+			sourceTree = "<group>";
+		};
+		00FCECA71C70D9B500EFBE12 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				00FCECB41C70D9BF00EFBE12 /* SwiftyJSON.swift */,
+			);
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -607,6 +618,7 @@
 				00E33E2A1C6E36FE007C5A7D /* AppDelegate.swift in Sources */,
 				00657DD71C6FB2F500188BB7 /* City.swift in Sources */,
 				00657DD41C6FB23000188BB7 /* Constants.swift in Sources */,
+				00FCECB51C70D9BF00EFBE12 /* SwiftyJSON.swift in Sources */,
 				00657DDF1C6FBA1D00188BB7 /* WeatherService.swift in Sources */,
 				00657DDA1C6FB47B00188BB7 /* Weather.swift in Sources */,
 			);
@@ -760,6 +772,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bi.weather.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -772,6 +785,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bi.weather.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";

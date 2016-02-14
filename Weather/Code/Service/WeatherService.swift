@@ -11,22 +11,22 @@ import ReactiveCocoa
 
 struct WeatherService {
     
-    func fetchCurrentWeather(forCity city: String) -> SignalProducer<Weather?, NSError> {
+    static func fetchCurrentWeather(forCity city: String) -> SignalProducer<City?, NSError> {
         
         let session = NSURLSession.sharedSession()
-        let currentWeatherURL = NSURL(string: URLRetrieveCurrentWeather)!.addParameters([("appid", API_WEATHER_KEY), ("q", city)])!
-        let request = NSURLRequest(URL: currentWeatherURL)
+        let currentWeatherURL = NSURL(string: URLRetrieveCurrentWeather, parameters: [("appid", API_WEATHER_KEY), ("q", city)])!
+        let request = NSMutableURLRequest(URL: currentWeatherURL)
+        request.HTTPMethod = "GET"
         
         return session.rac_dataWithRequest(request)
             .map { data, response in
-                do {
-                    let json = try (NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)) as? [NSDictionary])?.first
-                    print("\(json)")
-                    return nil
-                } catch {
-                    print("Failed to parse menu")
-                    return nil
-                }
+                
+                let json = JSON(data: data)
+                return City(responseData: json)
+            }
+        .retry(3)
+        .mapError { error in
+            return error
         }
     }
 }

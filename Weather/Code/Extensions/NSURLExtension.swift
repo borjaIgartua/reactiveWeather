@@ -10,9 +10,9 @@ import Foundation
 
 extension NSURL {
     
-    func addParameters(paramenters: [(String, String)]) -> NSURL? {
+    public convenience init?(string URLString: String, parameters: [(String, String)]) {
         
-        var newAbsoluteString = self.absoluteString
+        var newAbsoluteString = URLString
         var addFirstParameter = false
         
         if !newAbsoluteString.containsString("?") {
@@ -20,7 +20,7 @@ extension NSURL {
             addFirstParameter = true
         }
         
-        for parameter in paramenters {
+        for parameter in parameters {
             
             if addFirstParameter {
                 newAbsoluteString = newAbsoluteString + "?" + parameter.0 + "=" + parameter.1
@@ -31,6 +31,7 @@ extension NSURL {
             }
         }
         
-        return NSURL(string: newAbsoluteString)
+        self.init(string: newAbsoluteString)
+        
     }
 }
