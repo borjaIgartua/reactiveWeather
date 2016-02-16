@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveCocoa
 
 class ViewController: UIViewController {
 
@@ -15,6 +16,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         WeatherService.fetchCurrentWeather(forCity: "Madrid")
+            .observeOn(UIScheduler())
             .startWithSignal { signal, disposable in
                         
             signal.observe { event in
@@ -23,7 +25,9 @@ class ViewController: UIViewController {
                 case .Next:
                     print("Next event received: \(event.value)")
                 case .Failed:
+                    //TODO: show eeror
                     print("event failed: \(event.error)")
+                    disposable.dispose()
                 case .Completed:
                     print("Completed, value: \(event.value)")
                     disposable.dispose()
@@ -31,8 +35,8 @@ class ViewController: UIViewController {
                     break
                 }
             }
+                
         }
-        
     }
 
     override func didReceiveMemoryWarning() {

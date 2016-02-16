@@ -24,9 +24,9 @@ struct WeatherService {
                 let json = JSON(data: data)
                 return City(responseData: json)
             }
-        .retry(3)
-        .mapError { error in
-            return error
-        }
+            .retry(3)
+            .mapError { error in
+                return error
+            }
     }
 }
