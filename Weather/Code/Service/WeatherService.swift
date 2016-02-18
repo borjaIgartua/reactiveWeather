@@ -9,12 +9,14 @@
 import Foundation
 import ReactiveCocoa
 
+
+
 struct WeatherService {
     
-    static func fetchCurrentWeather(forCity city: String) -> SignalProducer<City?, NSError> {
+    func fetchCurrentWeather(forCity city: String) -> SignalProducer<City?, NSError> {
         
         let session = NSURLSession.sharedSession()
-        let currentWeatherURL = NSURL(string: URLRetrieveCurrentWeather, parameters: [("appid", API_WEATHER_KEY), ("q", city)])!
+        let currentWeatherURL = NSURL(string: URLRetrieveCurrentWeather, parameters: [("appid", API_WEATHER_KEY), ("q", city.encodedQueryURL), ("units" , Weather.temperatureUnits)])!
         let request = NSMutableURLRequest(URL: currentWeatherURL)
         request.HTTPMethod = "GET"
         
@@ -22,7 +24,12 @@ struct WeatherService {
             .map { data, response in
                 
                 let json = JSON(data: data)
-                return City(responseData: json)
+                if json != nil {
+                    return City(responseData: json)
+                    
+                } else {
+                    return nil
+                }
             }
             .retry(3)
             .mapError { error in

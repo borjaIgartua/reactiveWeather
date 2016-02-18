@@ -10,7 +10,7 @@ import Foundation
 
 extension NSURL {
     
-    public convenience init?(string URLString: String, parameters: [(String, String)]) {
+    public convenience init?(string URLString: String, parameters: [(String, String?)]) {
         
         var newAbsoluteString = URLString
         var addFirstParameter = false
@@ -23,11 +23,17 @@ extension NSURL {
         for parameter in parameters {
             
             if addFirstParameter {
-                newAbsoluteString = newAbsoluteString + "?" + parameter.0 + "=" + parameter.1
-                addFirstParameter = false
+                
+                if let value = parameter.1 {
+                    newAbsoluteString = newAbsoluteString + "?" + parameter.0 + "=" + value
+                    addFirstParameter = false
+                }
                 
             } else {
-                newAbsoluteString = newAbsoluteString + "&" + parameter.0 + "=" + parameter.1
+                
+                if let value = parameter.1 {
+                    newAbsoluteString = newAbsoluteString + "&" + parameter.0 + "=" + value
+                }
             }
         }
         

@@ -44,6 +44,14 @@ struct Weather {
         let windResponseData = responseData["wind"].dictionaryValue
         self.windSpeed = windResponseData["speed"]?.doubleValue
     }
+    
+    static var temperatureUnits : String {
+        get {
+            /*units=imperial Farengheight
+            For temperature in Celsius use units=metric*/
+            return "metric"
+        }
+    }
 }
 
 struct WeatherDescription {

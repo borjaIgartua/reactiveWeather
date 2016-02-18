@@ -8,11 +8,16 @@
 
 import UIKit
 
-class CitiesViewController : BIViewController, BIViewClient {
+class CitiesViewController : BIViewController {
     
     override func viewDidLoad() {
-        self.presenter.viewDidLoad()
+        super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.whiteColor()
+        let addButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addPressed")
+        self.navigationItem.setRightBarButtonItem(addButtonItem, animated: true)
+    }
+    
+    func addPressed() {
+        AddCityRouting.presentAddCityModule(fromViewController: self)
     }
 }

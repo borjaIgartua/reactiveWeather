@@ -13,10 +13,18 @@ struct City {
     
     var id : String
     var location : CLLocation?
-    var name : String
+    var name : String?
     var weather : Weather?
     
-    init(withID id: String, location: CLLocation?, name: String, weather: Weather?) {
+    init() {
+        
+        self.id = ""
+        self.location = nil
+        self.name = ""
+        self.weather = nil
+    }
+    
+    init(withID id: String, location: CLLocation?, name: String?, weather: Weather?) {
         
         self.id = id
         self.location = location

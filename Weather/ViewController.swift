@@ -15,28 +15,28 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        WeatherService.fetchCurrentWeather(forCity: "Madrid")
-            .observeOn(UIScheduler())
-            .startWithSignal { signal, disposable in
-                        
-            signal.observe { event in
-                print("Event \(event)")
-            switch event {
-                case .Next:
-                    print("Next event received: \(event.value)")
-                case .Failed:
-                    //TODO: show eeror
-                    print("event failed: \(event.error)")
-                    disposable.dispose()
-                case .Completed:
-                    print("Completed, value: \(event.value)")
-                    disposable.dispose()
-                default:
-                    break
-                }
-            }
-                
-        }
+//        WeatherService.fetchCurrentWeather(forCity: "Madrid")
+//            .observeOn(UIScheduler())
+//            .startWithSignal { signal, disposable in
+//                        
+//            signal.observe { event in
+//                print("Event \(event)")
+//            switch event {
+//                case .Next:
+//                    print("Next event received: \(event.value)")
+//                case .Failed:
+//                    //TODO: show eeror
+//                    print("event failed: \(event.error)")
+//                    disposable.dispose()
+//                case .Completed:
+//                    print("Completed, value: \(event.value)")
+//                    disposable.dispose()
+//                default:
+//                    break
+//                }
+//            }
+//
+//        }
     }
 
     override func didReceiveMemoryWarning() {
