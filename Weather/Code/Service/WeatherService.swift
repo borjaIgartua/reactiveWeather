@@ -16,15 +16,17 @@ struct WeatherService {
     func fetchCurrentWeather(forCity city: String) -> SignalProducer<City?, NSError> {
         
         let session = NSURLSession.sharedSession()
-        let currentWeatherURL = NSURL(string: URLRetrieveCurrentWeather, parameters: [("appid", API_WEATHER_KEY), ("q", city.encodedQueryURL), ("units" , Weather.temperatureUnits)])!
+        let currentWeatherURL = NSURL(string: URLRetrieveCurrentWeather, parameters: [("appid", API_WEATHER_KEY), ("q", city.encodedQueryURL), ("units" , WeatherUnits.metricUnits)])!
         let request = NSMutableURLRequest(URL: currentWeatherURL)
         request.HTTPMethod = "GET"
+        print("Request data: \n \(request)")
         
         return session.rac_dataWithRequest(request)
             .map { data, response in
                 
                 let json = JSON(data: data)
                 if json != nil {
+                    print("Data received: \n \(json)")
                     return City(responseData: json)
                     
                 } else {

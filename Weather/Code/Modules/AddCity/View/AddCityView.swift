@@ -54,9 +54,9 @@ class AddCityView : UIView, ReactiveView {
         let cityViewModel = viewModel as! CityViewModel
         
         cityNameLabel.rac_text <~ cityViewModel.nameProperty.producer.map { $0 }
-        temperatureLabel.rac_text <~ cityViewModel.temperatureProperty.producer.map { $0 }
-        pressureLabel.rac_text <~ cityViewModel.pressureProperty.producer.map { $0 }
-        humidityLabel.rac_text <~ cityViewModel.humidityProperty.producer.map { $0 }
-        windSpeedLabel.rac_text <~ cityViewModel.windSpeedProperty.producer.map { $0 }
+        temperatureLabel.rac_text <~ cityViewModel.temperatureProperty.producer.map { "Temperatura: \($0)\(WeatherUnits.temperatureSymbol)" }
+        pressureLabel.rac_text <~ cityViewModel.pressureProperty.producer.map { "Presión atmosférica: \($0)hPa" }
+        humidityLabel.rac_text <~ cityViewModel.humidityProperty.producer.map { "Humedad: \($0)%" }
+        windSpeedLabel.rac_text <~ cityViewModel.windSpeedProperty.producer.map { "Viento: \($0)\(WeatherUnits.windSymbol)" }
     }
 }

@@ -29,9 +29,7 @@ class AddCityViewModel : BIViewModel {
     init(weatherService: WeatherService) {        
         self.weatherService = weatherService
         super.init()
-        
-//        let _ = MutableProperty<String>("")
-        
+                
         searchText.producer
             .mapError({ _ in WeatherError.NoError.toError() })
             .filter({ (text) -> Bool in
