@@ -26,6 +26,9 @@ class AddCityViewModel : BIViewModel {
     let cityProperty = MutableProperty<CityViewModel>(CityViewModel())
     let loadingAlpha = MutableProperty<CGFloat>(Constants.DisabledViewAlpha)
     
+    var currentCity : City?
+
+    
     init(weatherService: WeatherService) {        
         self.weatherService = weatherService
         super.init()
@@ -46,7 +49,10 @@ class AddCityViewModel : BIViewModel {
             .startWithSignal { (signal, disposable) -> () in
                 
                 signal.observeNext({ (city) -> () in
+                    
                     if let city = city {
+                        
+                        self.currentCity = city
                         self.isSearching.value = false
                         self.cityProperty.value = CityViewModel(city: city)
                         

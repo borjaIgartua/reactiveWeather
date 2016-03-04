@@ -13,7 +13,8 @@ enum WeatherError: Int {
     
     case InvalidResponse = 0,
     ParserError,
-    NoError
+    NoError,
+    NoData
     
     func toError() -> NSError {
         return NSError(domain:"Weather", code: self.rawValue, userInfo: nil)

@@ -40,7 +40,7 @@ class AddCityView : UIView, ReactiveView {
         
         
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[cityNameLabel]-15-|", views: views))
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-100-[cityNameLabel]-10-[temperatureLabel]-10-[pressureLabel]-10-[humidityLabel]-10-[windSpeedLabel]-(>=10)-|",
+        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-170-[cityNameLabel]-10-[temperatureLabel]-10-[pressureLabel]-10-[humidityLabel]-10-[windSpeedLabel]-(>=10)-|",
             options: .AlignAllLeft, metrics: nil, views: views))
     }
 
@@ -48,15 +48,17 @@ class AddCityView : UIView, ReactiveView {
          fatalError("init(coder:) has not been implemented")
      }
     
-    
     func bindViewModel(withViewModel viewModel: AnyObject) {
         
         let cityViewModel = viewModel as! CityViewModel
         
-        cityNameLabel.rac_text <~ cityViewModel.nameProperty.producer.map { $0 }
-        temperatureLabel.rac_text <~ cityViewModel.temperatureProperty.producer.map { "Temperatura: \($0)\(WeatherUnits.temperatureSymbol)" }
-        pressureLabel.rac_text <~ cityViewModel.pressureProperty.producer.map { "Presión atmosférica: \($0)hPa" }
-        humidityLabel.rac_text <~ cityViewModel.humidityProperty.producer.map { "Humedad: \($0)%" }
-        windSpeedLabel.rac_text <~ cityViewModel.windSpeedProperty.producer.map { "Viento: \($0)\(WeatherUnits.windSymbol)" }
+        if (cityViewModel.nameProperty.value.length > 0) {
+        
+            cityNameLabel.rac_text <~ cityViewModel.nameProperty.producer.map { $0 }
+            temperatureLabel.rac_text <~ cityViewModel.temperatureProperty.producer.map { "Temperatura: \($0)\(WeatherUnits.temperatureSymbol)" }
+            pressureLabel.rac_text <~ cityViewModel.pressureProperty.producer.map { "Presión atmosférica: \($0)hPa" }
+            humidityLabel.rac_text <~ cityViewModel.humidityProperty.producer.map { "Humedad: \($0)%" }
+            windSpeedLabel.rac_text <~ cityViewModel.windSpeedProperty.producer.map { "Viento: \($0)\(WeatherUnits.windSymbol)" }
+        }
     }
 }

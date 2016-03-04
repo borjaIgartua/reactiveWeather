@@ -14,8 +14,7 @@ class AddCityViewController : BIViewController {
     
     let searchTexField = UITextField()
     let addCityView = AddCityView()
-    
-
+    let addButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +23,16 @@ class AddCityViewController : BIViewController {
 //        searchTexField.rac_enabled <~ viewModel.isSearching.producer.map { !$0 }
         addCityView.rac_alpha <~ viewModel.loadingAlpha.producer.map { $0 }
         
+        addButton.rac_signalForControlEvents(.TouchUpInside)
+            .toSignalProducer()
+            .map { (button) -> City? in
+                return self.viewModel.currentCity
+            }
+            .startWithNext { (city) -> () in
+                
+                
+            }
+
         viewModel.cityProperty.producer.startWithNext { (cityViewModel) -> () in
             self.addCityView.bindViewModel(withViewModel: cityViewModel)
         }
@@ -37,13 +46,21 @@ class AddCityViewController : BIViewController {
         searchTexField.backgroundColor = UIColor.grayColor()
         self.view.addSubview(searchTexField)
         
-        let views = ["searchTexField" : searchTexField, "addCityView" : addCityView]
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.backgroundColor = UIColor.redColor()
+        addButton.layer.cornerRadius = 30
+        self.view.addSubview(addButton)
+        
+        let views = ["searchTexField" : searchTexField, "addCityView" : addCityView, "addButton" : addButton]
         
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-12-[searchTexField]-12-|", views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-44-[searchTexField(==34)]-(>=10)-|", views: views))
+        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-44-[searchTexField(==34)]-20-[addButton(==60)]-(>=10)-|", views: views))
         
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[addCityView]|", views: views))
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[addCityView]|", views: views))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[addButton(==60)]", views: views))
+        self.view.addConstraint(NSLayoutConstraint.constraintCenterX(item: addButton, toItem: self.view))
         
     }
 }
