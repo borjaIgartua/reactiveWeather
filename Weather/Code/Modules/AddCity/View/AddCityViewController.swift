@@ -29,8 +29,8 @@ class AddCityViewController : BIViewController {
                 return self.viewModel.currentCity
             }
             .startWithNext { (city) -> () in
-                
-                
+                self.viewModel.addCity(city)
+                self .dismissViewControllerAnimated(true, completion: nil)
             }
 
         viewModel.cityProperty.producer.startWithNext { (cityViewModel) -> () in
@@ -49,6 +49,7 @@ class AddCityViewController : BIViewController {
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.backgroundColor = UIColor.redColor()
         addButton.layer.cornerRadius = 30
+        //TODO: set close title in button when no city is founded
         self.view.addSubview(addButton)
         
         let views = ["searchTexField" : searchTexField, "addCityView" : addCityView, "addButton" : addButton]

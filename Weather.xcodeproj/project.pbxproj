@@ -29,7 +29,7 @@
 		00D9D05E1C75B9930004580E /* WeatherError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D9D05D1C75B9930004580E /* WeatherError.swift */; };
 		00D9D06C1C75CDE60004580E /* AddCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D9D06B1C75CDE60004580E /* AddCityView.swift */; };
 		00D9D06F1C75E4560004580E /* CityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D9D06E1C75E4560004580E /* CityViewModel.swift */; };
-		00D9D0731C760E7D0004580E /* ReactiveViewI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D9D0721C760E7D0004580E /* ReactiveViewI.swift */; };
+		00D9D0731C760E7D0004580E /* ReactiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D9D0721C760E7D0004580E /* ReactiveView.swift */; };
 		00E33E2A1C6E36FE007C5A7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E33E291C6E36FE007C5A7D /* AppDelegate.swift */; };
 		00E33E2C1C6E36FE007C5A7D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E33E2B1C6E36FE007C5A7D /* ViewController.swift */; };
 		00E33E311C6E36FE007C5A7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00E33E301C6E36FE007C5A7D /* Assets.xcassets */; };
@@ -42,6 +42,8 @@
 		00EB5C9F1C71F3FD007FEAF0 /* BIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB5C9E1C71F3FD007FEAF0 /* BIViewController.swift */; };
 		00EB5CA81C71FFBA007FEAF0 /* CitiesRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB5CA71C71FFBA007FEAF0 /* CitiesRouting.swift */; };
 		00EDEE641C770E100014D968 /* WeatherUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EDEE631C770E100014D968 /* WeatherUnits.swift */; };
+		00F8691F1C98679200BBC811 /* TableViewBindingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8691E1C98679200BBC811 /* TableViewBindingHelper.swift */; };
+		00F869211C98757900BBC811 /* ReactiveConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F869201C98757900BBC811 /* ReactiveConstants.swift */; };
 		00FCECB51C70D9BF00EFBE12 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FCECB41C70D9BF00EFBE12 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
@@ -210,7 +212,7 @@
 		00D9D05D1C75B9930004580E /* WeatherError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherError.swift; path = Code/Model/WeatherError.swift; sourceTree = "<group>"; };
 		00D9D06B1C75CDE60004580E /* AddCityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddCityView.swift; path = Code/Modules/AddCity/View/AddCityView.swift; sourceTree = "<group>"; };
 		00D9D06E1C75E4560004580E /* CityViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CityViewModel.swift; path = Code/ViewModel/CityViewModel.swift; sourceTree = "<group>"; };
-		00D9D0721C760E7D0004580E /* ReactiveViewI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveViewI.swift; path = Code/ViewModel/ReactiveViewI.swift; sourceTree = "<group>"; };
+		00D9D0721C760E7D0004580E /* ReactiveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveView.swift; path = Code/ViewModel/ReactiveView.swift; sourceTree = "<group>"; };
 		00E33E261C6E36FE007C5A7D /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E33E291C6E36FE007C5A7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00E33E2B1C6E36FE007C5A7D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -229,6 +231,8 @@
 		00EB5C9E1C71F3FD007FEAF0 /* BIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BIViewController.swift; path = Code/Modules/Base/BIViewController.swift; sourceTree = "<group>"; };
 		00EB5CA71C71FFBA007FEAF0 /* CitiesRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CitiesRouting.swift; path = Code/Modules/Cities/Routing/CitiesRouting.swift; sourceTree = "<group>"; };
 		00EDEE631C770E100014D968 /* WeatherUnits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherUnits.swift; path = Code/Model/WeatherUnits.swift; sourceTree = "<group>"; };
+		00F8691E1C98679200BBC811 /* TableViewBindingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewBindingHelper.swift; path = Code/Extensions/TableViewBindingHelper.swift; sourceTree = "<group>"; };
+		00F869201C98757900BBC811 /* ReactiveConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveConstants.swift; path = Code/Constants/ReactiveConstants.swift; sourceTree = "<group>"; };
 		00FCECB41C70D9BF00EFBE12 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Code/Libraries/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -328,6 +332,7 @@
 			children = (
 				00657DD31C6FB23000188BB7 /* Constants.swift */,
 				00657DE01C6FBB2600188BB7 /* NetworkConstants.swift */,
+				00F869201C98757900BBC811 /* ReactiveConstants.swift */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 				005C70BA1C73255500E1F935 /* UIKitReactive.swift */,
 				002DE5C01C74C7FB00C5113C /* NSLayoutConstraint.swift */,
 				002DE5C51C74DC4B00C5113C /* String.swift */,
+				00F8691E1C98679200BBC811 /* TableViewBindingHelper.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -403,7 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				00D9D06E1C75E4560004580E /* CityViewModel.swift */,
-				00D9D0721C760E7D0004580E /* ReactiveViewI.swift */,
+				00D9D0721C760E7D0004580E /* ReactiveView.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -801,8 +807,9 @@
 				00E33E2C1C6E36FE007C5A7D /* ViewController.swift in Sources */,
 				00D9D05E1C75B9930004580E /* WeatherError.swift in Sources */,
 				002DE5B61C746D2600C5113C /* LocationService.swift in Sources */,
+				00F869211C98757900BBC811 /* ReactiveConstants.swift in Sources */,
 				00EDEE641C770E100014D968 /* WeatherUnits.swift in Sources */,
-				00D9D0731C760E7D0004580E /* ReactiveViewI.swift in Sources */,
+				00D9D0731C760E7D0004580E /* ReactiveView.swift in Sources */,
 				00E33E2A1C6E36FE007C5A7D /* AppDelegate.swift in Sources */,
 				00657DD71C6FB2F500188BB7 /* City.swift in Sources */,
 				002DE5C11C74C7FB00C5113C /* NSLayoutConstraint.swift in Sources */,
@@ -812,6 +819,7 @@
 				002DE5C41C74D17200C5113C /* AddCityRouting.swift in Sources */,
 				00657DD41C6FB23000188BB7 /* Constants.swift in Sources */,
 				002DE5C61C74DC4B00C5113C /* String.swift in Sources */,
+				00F8691F1C98679200BBC811 /* TableViewBindingHelper.swift in Sources */,
 				00EB5C8F1C71D99A007FEAF0 /* ServiceLocator.swift in Sources */,
 				00FCECB51C70D9BF00EFBE12 /* SwiftyJSON.swift in Sources */,
 				002DE5B91C74720800C5113C /* BIViewModel.swift in Sources */,

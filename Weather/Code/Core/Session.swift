@@ -18,16 +18,19 @@ class Session {
         self.loadStorageData()
     }
     
-    func addOneModeCity(city: City) {
+    func appendCity(city: City?) {
         
-        if self.cities != nil {
-            self.cities!.append(city)
+        if let city = city {
             
-        } else {
-            
-            var newCities = [City]()
-            newCities.append(city)
-            cities = newCities
+            if self.cities != nil {
+                self.cities!.append(city)
+                
+            } else {
+                
+                var newCities = [City]()
+                newCities.append(city)
+                cities = newCities
+            }
         }
     }
     

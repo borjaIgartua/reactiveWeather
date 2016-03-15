@@ -12,19 +12,13 @@ import ReactiveCocoa
 class AddCityViewModel : BIViewModel {
     
     private let weatherService : WeatherService!
-    
-    private struct Constants {
-        static let SearchCharacterMinimum = 3
-        static let SearchThrottleTime = 2.5
-        static let DisabledViewAlpha: CGFloat = 0.5
-        static let EnabledViewAlpha: CGFloat = 1.0
-    }
+    private let session : Session? = LazyServiceLocator.sharedServiceLocator.getService()        
     
     let searchText = MutableProperty<String>("")
     let queryExecutionTime = MutableProperty<String>("")
     let isSearching = MutableProperty<Bool>(false)
     let cityProperty = MutableProperty<CityViewModel>(CityViewModel())
-    let loadingAlpha = MutableProperty<CGFloat>(Constants.DisabledViewAlpha)
+    let loadingAlpha = MutableProperty<CGFloat>(ReactiveConstants.DisabledViewAlpha)
     
     var currentCity : City?
 
@@ -36,9 +30,9 @@ class AddCityViewModel : BIViewModel {
         searchText.producer
             .mapError({ _ in WeatherError.NoError.toError() })
             .filter({ (text) -> Bool in
-                return text.length > Constants.SearchCharacterMinimum
+                return text.length > ReactiveConstants.SearchCharacterMinimum
             })
-            .throttle(Constants.SearchThrottleTime, onScheduler: QueueScheduler.mainQueueScheduler)
+            .throttle(ReactiveConstants.SearchThrottleTime, onScheduler: QueueScheduler.mainQueueScheduler)
             .on(next: {
                 _ in self.isSearching.value = true
             })
@@ -61,6 +55,7 @@ class AddCityViewModel : BIViewModel {
                     }
                 })
                 signal.observeFailed({ (error) -> () in
+                    disposable.dispose()
                     print(error)
                 })
             }
@@ -69,6 +64,10 @@ class AddCityViewModel : BIViewModel {
     }
 
     private func enabledAlpha(searching: Bool) -> CGFloat {
-        return searching ? Constants.DisabledViewAlpha : Constants.EnabledViewAlpha
+        return searching ? ReactiveConstants.DisabledViewAlpha : ReactiveConstants.EnabledViewAlpha
+    }
+    
+    func addCity(city: City?) {
+        session?.appendCity(city)
     }
 }

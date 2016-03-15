@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.configureAppDependencies()
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         CitiesRouting.presentCitiesModule(inWindow: self.window!)
@@ -56,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func configureAppDependencies() {
         
         let session = Session()
-        LazyServiceLocator.sharedServiceLocator.addService {session}
+        LazyServiceLocator.sharedServiceLocator.addService(session)
     }
     
 }

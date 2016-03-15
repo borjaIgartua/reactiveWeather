@@ -12,6 +12,7 @@ import ReactiveCocoa
 class AddCityView : UIView, ReactiveView {
     
     let cityNameLabel = UILabel()
+    let descriptionLabel = UILabel()
     let temperatureLabel = UILabel()
     let pressureLabel = UILabel()
     let humidityLabel = UILabel()
@@ -23,6 +24,10 @@ class AddCityView : UIView, ReactiveView {
         cityNameLabel.translatesAutoresizingMaskIntoConstraints = false
         cityNameLabel.textAlignment = .Center
         self.addSubview(cityNameLabel)
+        
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.textAlignment = .Center
+        self.addSubview(descriptionLabel)
         
         temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(temperatureLabel)
@@ -36,11 +41,11 @@ class AddCityView : UIView, ReactiveView {
         windSpeedLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(windSpeedLabel)
         
-        let views = ["cityNameLabel" : cityNameLabel, "temperatureLabel" : temperatureLabel, "pressureLabel" : pressureLabel, "humidityLabel" : humidityLabel, "windSpeedLabel" : windSpeedLabel]
-        
+        let views = ["cityNameLabel" : cityNameLabel, "descriptionLabel" : descriptionLabel, "temperatureLabel" : temperatureLabel, "pressureLabel" : pressureLabel, "humidityLabel" : humidityLabel, "windSpeedLabel" : windSpeedLabel]
         
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[cityNameLabel]-15-|", views: views))
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-170-[cityNameLabel]-10-[temperatureLabel]-10-[pressureLabel]-10-[humidityLabel]-10-[windSpeedLabel]-(>=10)-|",
+        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[descriptionLabel]-15-|", views: views))
+        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-170-[cityNameLabel]-4-[descriptionLabel]-10-[temperatureLabel]-10-[pressureLabel]-10-[humidityLabel]-10-[windSpeedLabel]-(>=10)-|",
             options: .AlignAllLeft, metrics: nil, views: views))
     }
 
@@ -56,9 +61,21 @@ class AddCityView : UIView, ReactiveView {
         
             cityNameLabel.rac_text <~ cityViewModel.nameProperty.producer.map { $0 }
             temperatureLabel.rac_text <~ cityViewModel.temperatureProperty.producer.map { "Temperatura: \($0)\(WeatherUnits.temperatureSymbol)" }
-            pressureLabel.rac_text <~ cityViewModel.pressureProperty.producer.map { "Presión atmosférica: \($0)hPa" }
+            pressureLabel.rac_text <~ cityViewModel.pressureProperty.producer.map { "Presión atmosférica: \($0) hPa" }
             humidityLabel.rac_text <~ cityViewModel.humidityProperty.producer.map { "Humedad: \($0)%" }
-            windSpeedLabel.rac_text <~ cityViewModel.windSpeedProperty.producer.map { "Viento: \($0)\(WeatherUnits.windSymbol)" }
+            windSpeedLabel.rac_text <~ cityViewModel.windSpeedProperty.producer.map { "Viento: \($0) \(WeatherUnits.windSymbol)" }
+            descriptionLabel.rac_text <~ cityViewModel.descriptionsProperty.producer
+                .filter({ (descriptions) -> Bool in
+                    return (descriptions?.count == 1);
+                }).map({ (descriptions) -> String in
+                    
+                    if let descriptions = descriptions {
+                        let description = descriptions[0]
+                        return description.description
+                    }
+                    
+                    return ""
+                })
         }
     }
 }

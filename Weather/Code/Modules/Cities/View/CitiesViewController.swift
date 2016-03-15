@@ -9,6 +9,7 @@
 import UIKit
 
 class CitiesViewController : BIViewController {
+    var viewModel : CitiesViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
