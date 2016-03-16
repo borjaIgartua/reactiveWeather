@@ -11,6 +11,32 @@ import ReactiveCocoa
 
 struct WeatherService {
     
+    func fetchCurrentWeather(forLocation location:CLLocation?) -> SignalProducer<City?, NSError> {
+        
+        let session = NSURLSession.sharedSession()
+        let currentWeatherURL = NSURL(string: URLRetrieveCurrentWeather, parameters: [("appid", API_WEATHER_KEY), ("lat", location?.encodedQueryURL.0), ("lon", location?.encodedQueryURL.1), ("units" , WeatherUnits.metricUnits)])!
+        let request = NSMutableURLRequest(URL: currentWeatherURL)
+        request.HTTPMethod = "GET"
+        print("Request data: \n \(request)")
+        
+        return session.rac_dataWithRequest(request)
+            .map { data, response in
+                
+                let json = JSON(data: data)
+                if json != nil {
+                    print("Data received: \n \(json)")
+                    return City(responseData: json)
+                    
+                } else {
+                    return nil
+                }
+            }
+            .retry(3)
+            .mapError { error in
+                return error
+        }
+    }
+    
     func fetchCurrentWeather(forCity city: String) -> SignalProducer<City?, NSError> {
         
         let session = NSURLSession.sharedSession()

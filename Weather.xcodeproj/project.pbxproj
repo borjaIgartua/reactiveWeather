@@ -36,6 +36,7 @@
 		00E33E341C6E36FE007C5A7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00E33E321C6E36FE007C5A7D /* LaunchScreen.storyboard */; };
 		00E33E3F1C6E36FF007C5A7D /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E33E3E1C6E36FF007C5A7D /* WeatherTests.swift */; };
 		00E33E4A1C6E36FF007C5A7D /* WeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E33E491C6E36FF007C5A7D /* WeatherUITests.swift */; };
+		00E4CDF91C99576500B260A5 /* CLLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E4CDF81C99576500B260A5 /* CLLocation.swift */; };
 		00E6C12E1C7AF7B0002FAC9E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E6C12D1C7AF7B0002FAC9E /* Session.swift */; };
 		00EB5C8F1C71D99A007FEAF0 /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB5C8E1C71D99A007FEAF0 /* ServiceLocator.swift */; };
 		00EB5C9B1C71F37E007FEAF0 /* CitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB5C9A1C71F37E007FEAF0 /* CitiesViewController.swift */; };
@@ -225,6 +226,7 @@
 		00E33E451C6E36FF007C5A7D /* WeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E33E491C6E36FF007C5A7D /* WeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherUITests.swift; sourceTree = "<group>"; };
 		00E33E4B1C6E36FF007C5A7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00E4CDF81C99576500B260A5 /* CLLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CLLocation.swift; path = Code/Extensions/CLLocation.swift; sourceTree = "<group>"; };
 		00E6C12D1C7AF7B0002FAC9E /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Session.swift; path = Code/Core/Session.swift; sourceTree = "<group>"; };
 		00EB5C8E1C71D99A007FEAF0 /* ServiceLocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceLocator.swift; path = Code/Core/ServiceLocator.swift; sourceTree = "<group>"; };
 		00EB5C9A1C71F37E007FEAF0 /* CitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CitiesViewController.swift; path = Code/Modules/Cities/View/CitiesViewController.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				002DE5C01C74C7FB00C5113C /* NSLayoutConstraint.swift */,
 				002DE5C51C74DC4B00C5113C /* String.swift */,
 				00F8691E1C98679200BBC811 /* TableViewBindingHelper.swift */,
+				00E4CDF81C99576500B260A5 /* CLLocation.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -819,6 +822,7 @@
 				002DE5C41C74D17200C5113C /* AddCityRouting.swift in Sources */,
 				00657DD41C6FB23000188BB7 /* Constants.swift in Sources */,
 				002DE5C61C74DC4B00C5113C /* String.swift in Sources */,
+				00E4CDF91C99576500B260A5 /* CLLocation.swift in Sources */,
 				00F8691F1C98679200BBC811 /* TableViewBindingHelper.swift in Sources */,
 				00EB5C8F1C71D99A007FEAF0 /* ServiceLocator.swift in Sources */,
 				00FCECB51C70D9BF00EFBE12 /* SwiftyJSON.swift in Sources */,

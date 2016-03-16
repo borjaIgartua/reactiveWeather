@@ -18,6 +18,7 @@ class CitiesViewModel : BIViewModel  {
     let isSearching = MutableProperty<Bool>(false)
     let loadingAlpha = MutableProperty<CGFloat>(ReactiveConstants.DisabledViewAlpha)
     let cities = MutableProperty<[CityViewModel]>([CityViewModel]())
+    var currentCity : City?
     
     init(weatherService: WeatherService, locationService: LocationService) {
         self.weatherService = weatherService
@@ -25,6 +26,7 @@ class CitiesViewModel : BIViewModel  {
         super.init()
         
         if let cities = session?.cities {
+            
             weatherService.fetchGroupWeather(forCities: cities)
                 .mapError({ _ in WeatherError.NoError.toError() })
                 .on(next: {
@@ -36,7 +38,11 @@ class CitiesViewModel : BIViewModel  {
                     signal.observeNext({ (cities) -> () in
                         
                         if let cities = cities {
-                            self.cities.value = cities.map { CityViewModel(city: $0) } //look id the cities value have the citiy location, should not delete!
+                            self.cities.value = cities.map { CityViewModel(city: $0) }
+                            
+                            if let city = self.currentCity {
+                                self.cities.value.append(CityViewModel(city: city))
+                            }
                             
                         } else {
                             //TODO: handle error
@@ -51,21 +57,37 @@ class CitiesViewModel : BIViewModel  {
         
         locationService.updateLocationSignalProducer()
             .observeOn(UIScheduler())
+            .flatMap(FlattenStrategy.Latest) { (location) -> SignalProducer<City?, NSError> in
+                return self.weatherService.fetchCurrentWeather(forLocation: location)
+        }
+            .observeOn(QueueScheduler.mainQueueScheduler)
             .startWithSignal { (signal, disposable) -> () in
             
-                signal.observe { event in
+                signal.observeNext({ (city) -> () in
                     
-                switch event {
-                    case .Next:
-//                        cities.value.append(event.value.map{ CityViewModel(city: $0) }) hay que coger la localización, hacer el flattern map con la señal para pedir el tiempo por localizacion igual que con las busquedas y de ahí coger la ciudad
+                    if let city = city {
+                        
+                        if (self.cities.value.count == 0) {
+                            self.currentCity = city
+                            
+                        } else {
+                            self.cities.value.append(CityViewModel(city: city))
+                        }
+                        
+                        self.isSearching.value = false
                         disposable.dispose()
-                    case .Failed, .Completed:
-                        disposable.dispose()
-                    default:
-                        break
+                        
+                    } else {
+                        //TODO: handle error
                     }
-                }
+                })
+                signal.observeFailed({ (error) -> () in
+                    disposable.dispose()
+                    print(error)
+                })
         }
+        
+        loadingAlpha <~ isSearching.producer.map(enabledAlpha)
     }
     
     private func enabledAlpha(searching: Bool) -> CGFloat {
