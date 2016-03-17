@@ -9,6 +9,7 @@
 import Foundation
 import ReactiveCocoa
 import UIKit
+import enum Result.NoError
 
 // a helper that makes it easier to bind to UITableView instances
 // see: http://www.scottlogic.com/blog/2014/05/11/reactivecocoa-tableview-binding.html
@@ -25,7 +26,7 @@ class TableViewBindingHelper<T: AnyObject> : NSObject {
     
     //MARK: Public API
     
-    init(tableView: UITableView, sourceSignal: SignalProducer<[T], NSError>, cell: UITableViewCell, selectionCommand: RACCommand? = nil) {
+    init(tableView: UITableView, sourceSignal: SignalProducer<[T], NoError>, cell: UITableViewCell, selectionCommand: RACCommand? = nil) {
         self.tableView = tableView
         self.selectionCommand = selectionCommand
         
@@ -36,7 +37,7 @@ class TableViewBindingHelper<T: AnyObject> : NSObject {
         dataSource = DataSource(data: [AnyObject](), templateCell: templateCell)
         
         super.init()
-        
+    
         sourceSignal.startWithNext{ data in
             
             self.dataSource.data = data.map({ $0 as AnyObject })
@@ -46,8 +47,8 @@ class TableViewBindingHelper<T: AnyObject> : NSObject {
         tableView.dataSource = dataSource
         tableView.delegate = dataSource
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100.0
+        tableView.estimatedRowHeight = 120.0
+        tableView.rowHeight = UITableViewAutomaticDimension        
     }
 }
 

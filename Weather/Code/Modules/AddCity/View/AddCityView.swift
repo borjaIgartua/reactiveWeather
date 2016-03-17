@@ -55,27 +55,27 @@ class AddCityView : UIView, ReactiveView {
     
     func bindViewModel(withViewModel viewModel: AnyObject) {
         
-        let cityViewModel = viewModel as! CityViewModel
-        
-        if (cityViewModel.nameProperty.value.length > 0) {
-        
-            cityNameLabel.rac_text <~ cityViewModel.nameProperty.producer.map { $0 }
-            temperatureLabel.rac_text <~ cityViewModel.temperatureProperty.producer.map { "Temperatura: \($0)\(WeatherUnits.temperatureSymbol)" }
-            pressureLabel.rac_text <~ cityViewModel.pressureProperty.producer.map { "Presión atmosférica: \($0) hPa" }
-            humidityLabel.rac_text <~ cityViewModel.humidityProperty.producer.map { "Humedad: \($0)%" }
-            windSpeedLabel.rac_text <~ cityViewModel.windSpeedProperty.producer.map { "Viento: \($0) \(WeatherUnits.windSymbol)" }
-            descriptionLabel.rac_text <~ cityViewModel.descriptionsProperty.producer
-                .filter({ (descriptions) -> Bool in
-                    return (descriptions?.count == 1);
-                }).map({ (descriptions) -> String in
-                    
-                    if let descriptions = descriptions {
-                        let description = descriptions[0]
-                        return description.description
-                    }
-                    
-                    return ""
-                })
+        if let cityViewModel = viewModel as? CityViewModel {
+            if (cityViewModel.nameProperty.value.length > 0) {
+            
+                cityNameLabel.rac_text <~ cityViewModel.nameProperty.producer.map { $0 }
+                temperatureLabel.rac_text <~ cityViewModel.temperatureProperty.producer.map { "Temperatura: \($0)\(WeatherUnits.temperatureSymbol)" }
+                pressureLabel.rac_text <~ cityViewModel.pressureProperty.producer.map { "Presión atmosférica: \($0) hPa" }
+                humidityLabel.rac_text <~ cityViewModel.humidityProperty.producer.map { "Humedad: \($0)%" }
+                windSpeedLabel.rac_text <~ cityViewModel.windSpeedProperty.producer.map { "Viento: \($0) \(WeatherUnits.windSymbol)" }
+                descriptionLabel.rac_text <~ cityViewModel.descriptionsProperty.producer
+                    .filter({ (descriptions) -> Bool in
+                        return (descriptions?.count == 1);
+                    }).map({ (descriptions) -> String in
+                        
+                        if let descriptions = descriptions {
+                            let description = descriptions[0]
+                            return description.description
+                        }
+                        
+                        return ""
+                    })
+            }
         }
     }
 }

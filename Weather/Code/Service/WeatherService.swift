@@ -70,12 +70,12 @@ struct WeatherService {
             citiesID = citiesID + city.id
             
             if (city != cities.last) {
-                citiesID = ","
+                citiesID = citiesID + ","
             }
         }
         
         let session = NSURLSession.sharedSession()
-        let currentWeatherURL = NSURL(string: URLRetrieveCurrentWeather, parameters: [("id" , citiesID), ("appid", API_WEATHER_KEY), ("units" , WeatherUnits.metricUnits)])!
+        let currentWeatherURL = NSURL(string: URLRetrieveGroupWeather, parameters: [("id" , citiesID), ("appid", API_WEATHER_KEY), ("units" , WeatherUnits.metricUnits)])!
         let request = NSMutableURLRequest(URL: currentWeatherURL)
         request.HTTPMethod = "GET"
         print("Request data: \n \(request)")
@@ -91,10 +91,7 @@ struct WeatherService {
                     var cities = [City]()
                     if let citiesData = citiesData {
                         
-                        for data in citiesData {
-                            cities.append(City(responseData: data))
-                        }
-                        
+                        cities = citiesData.map { city in City(responseData: city) }
                         return cities
                         
                     } else {

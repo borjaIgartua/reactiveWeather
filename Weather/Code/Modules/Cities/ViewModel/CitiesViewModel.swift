@@ -43,7 +43,7 @@ class CitiesViewModel : BIViewModel  {
                             if let city = self.currentCity {
                                 self.cities.value.append(CityViewModel(city: city))
                             }
-                            
+                
                         } else {
                             //TODO: handle error
                         }
