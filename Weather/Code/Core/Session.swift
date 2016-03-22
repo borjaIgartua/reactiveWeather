@@ -34,6 +34,10 @@ class Session {
         }
     }
     
+    func removeCityAtIndex(index : Int) {        
+        self.cities?.removeAtIndex(index)
+    }
+    
     func saveLoadedData() {
         self.archiveData(withObject: self.cities, forKey: kSessionCitiesKey)
     }

@@ -18,42 +18,14 @@ class CitiesViewModel : BIViewModel  {
     let isSearching = MutableProperty<Bool>(false)
     let loadingAlpha = MutableProperty<CGFloat>(ReactiveConstants.DisabledViewAlpha)
     let cities = MutableProperty<[CityViewModel]>([CityViewModel]())
-    var currentCity : City?
+    var deleteCommand : RACCommand?
+    let deleteSignal : (Signal<AnyObject, NSError>, Observer<AnyObject, NSError>) = Signal.pipe()
+    var currentCity : CityViewModel?
     
     init(weatherService: WeatherService, locationService: LocationService) {
         self.weatherService = weatherService
         self.locationService = locationService
         super.init()
-        
-        if let cities = session?.cities {
-            
-            weatherService.fetchGroupWeather(forCities: cities)
-                .mapError({ _ in WeatherError.NoError.toError() })
-                .on(next: {
-                _ in self.isSearching.value = true
-            })
-                .observeOn(QueueScheduler.mainQueueScheduler)
-                .startWithSignal { (signal, disposable) -> () in
-                    
-                    signal.observeNext({ (cities) -> () in
-                        
-                        if let cities = cities {
-                            self.cities.value = cities.map { CityViewModel(city: $0) }
-                            
-                            if let city = self.currentCity {
-                                self.cities.value.append(CityViewModel(city: city))
-                            }
-                
-                        } else {
-                            //TODO: handle error
-                        }
-                    })
-                    signal.observeFailed({ (error) -> () in
-                        disposable.dispose()
-                        print(error)
-                    })
-            }
-        }
         
         locationService.updateLocationSignalProducer()
             .observeOn(UIScheduler())
@@ -67,12 +39,9 @@ class CitiesViewModel : BIViewModel  {
                     
                     if let city = city {
                         
-                        if (self.cities.value.count == 0) {
-                            self.currentCity = city
-                            
-                        } else {
-                            self.cities.value.append(CityViewModel(city: city))
-                        }
+                        self.currentCity = CityViewModel(city: city)
+                        self.session?.appendCity(city)
+                        self.cities.value.append(self.currentCity!)
                         
                         self.isSearching.value = false
                         disposable.dispose()
@@ -87,7 +56,49 @@ class CitiesViewModel : BIViewModel  {
                 })
         }
         
+        self.deleteSignal.0.observeNext { (indexPath) -> () in
+            
+            let cityViewModel = self.cities.value[indexPath.row]
+            if self.currentCity === cityViewModel {
+                self.currentCity = nil
+                
+            } else {
+                self.session?.removeCityAtIndex(indexPath.row)
+            }
+        }
+        
         loadingAlpha <~ isSearching.producer.map(enabledAlpha)
+    }
+    
+    func reloadData() {
+        
+        if let cities = session?.cities {
+            
+            if cities.count > 0 {
+                weatherService.fetchGroupWeather(forCities: cities)
+                    .mapError({ _ in WeatherError.NoError.toError() })
+                    .on(next: {
+                        _ in self.isSearching.value = true
+                    })
+                    .observeOn(QueueScheduler.mainQueueScheduler)
+                    .startWithSignal { (signal, disposable) -> () in
+                        
+                        signal.observeNext({ (cities) -> () in
+                            
+                            if let cities = cities {
+                                self.cities.value = cities.map { CityViewModel(city: $0) }
+                                
+                            } else {
+                                //TODO: handle error
+                            }
+                        })
+                        signal.observeFailed({ (error) -> () in
+                            disposable.dispose()
+                            print(error)
+                        })
+                }
+            }
+        }
     }
     
     private func enabledAlpha(searching: Bool) -> CGFloat {

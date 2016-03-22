@@ -22,14 +22,24 @@ class CitiesViewController : BIViewController {
         self.navigationItem.setRightBarButtonItem(addButtonItem, animated: true)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .None
         self.view.addSubview(tableView)
-        self.bindingHelper = TableViewBindingHelper(tableView: self.tableView, sourceSignal: self.viewModel.cities.producer, cell: CityCell(style: .Default, reuseIdentifier: "CityCell"))
+        self.bindingHelper = TableViewBindingHelper(tableView: self.tableView,
+                                                    sourceSignal: self.viewModel.cities.producer,
+                                                    cell: CityCell(style: .Default, reuseIdentifier: "CityCell"),
+                                                    deletionCommand: self.viewModel.deleteSignal.1)
         
         let views = ["tableView" : tableView]
         
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableView]|", views: views))
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]|", views: views))
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+        
+        viewModel.reloadData()
     }
     
     func addPressed() {

@@ -21,20 +21,19 @@ class TableViewBindingHelper<T: AnyObject> : NSObject {
     
     private let tableView: UITableView
     private let templateCell: UITableViewCell
-    private let selectionCommand: RACCommand?
+    
     private let dataSource: DataSource
     
     //MARK: Public API
     
-    init(tableView: UITableView, sourceSignal: SignalProducer<[T], NoError>, cell: UITableViewCell, selectionCommand: RACCommand? = nil) {
+    init(tableView: UITableView, sourceSignal: SignalProducer<[T], NoError>, cell: UITableViewCell, selectionCommand: Observer<AnyObject, NSError>? = nil, deletionCommand: Observer<AnyObject, NSError>? = nil) {
         self.tableView = tableView
-        self.selectionCommand = selectionCommand
         
         // create an instance of the template cell and register with the table view
         templateCell = cell
         tableView.registerClass(cell.classForCoder.self, forCellReuseIdentifier: cell.reuseIdentifier!)
         
-        dataSource = DataSource(data: [AnyObject](), templateCell: templateCell)
+        dataSource = DataSource(data: [AnyObject](), templateCell: templateCell, selectionCommand:  selectionCommand, deletionCommand: deletionCommand)
         
         super.init()
     
@@ -55,11 +54,15 @@ class TableViewBindingHelper<T: AnyObject> : NSObject {
 class DataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     private let templateCell: UITableViewCell
+    private let selectionCommand: Observer<AnyObject, NSError>?
+    private let deletionCommand: Observer<AnyObject, NSError>?
     var data: [AnyObject]
     
-    init(data: [AnyObject], templateCell: UITableViewCell) {
+    init(data: [AnyObject], templateCell: UITableViewCell, selectionCommand: Observer<AnyObject, NSError>? = nil, deletionCommand: Observer<AnyObject, NSError>? = nil) {
         self.data = data
         self.templateCell = templateCell
+        self.selectionCommand = selectionCommand
+        self.deletionCommand = deletionCommand
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,10 +78,20 @@ class DataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {                
+        if let deletionCommand = self.deletionCommand {
+            deletionCommand.sendNext(indexPath)
+        }
+        
+        data.removeAtIndex(indexPath.row)
+        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        /* if selectionCommand != nil {
-        selectionCommand?.execute(data[indexPath.row])
-        }*/
+        
+        if let selectionCommand = self.selectionCommand {
+            selectionCommand.sendNext(indexPath)
+        }
     }
     
 }
