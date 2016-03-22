@@ -61,10 +61,9 @@ class CitiesViewModel : BIViewModel  {
             let cityViewModel = self.cities.value[indexPath.row]
             if self.currentCity === cityViewModel {
                 self.currentCity = nil
-                
-            } else {
-                self.session?.removeCityAtIndex(indexPath.row)
             }
+            
+            self.session?.removeCityAtIndex(indexPath.row)
         }
         
         loadingAlpha <~ isSearching.producer.map(enabledAlpha)
