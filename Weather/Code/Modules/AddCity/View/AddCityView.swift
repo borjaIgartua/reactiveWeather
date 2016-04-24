@@ -11,6 +11,7 @@ import ReactiveCocoa
 
 class AddCityView : UIView, ReactiveView {
     
+    let backgroundImageView = UIImageView()
     let cityNameLabel = UILabel()
     let descriptionLabel = UILabel()
     let temperatureLabel = UILabel()
@@ -20,6 +21,9 @@ class AddCityView : UIView, ReactiveView {
     
      init() {
         super.init(frame: CGRectZero)
+        
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(backgroundImageView)
         
         cityNameLabel.translatesAutoresizingMaskIntoConstraints = false
         cityNameLabel.textAlignment = .Center
@@ -41,8 +45,10 @@ class AddCityView : UIView, ReactiveView {
         windSpeedLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(windSpeedLabel)
         
-        let views = ["cityNameLabel" : cityNameLabel, "descriptionLabel" : descriptionLabel, "temperatureLabel" : temperatureLabel, "pressureLabel" : pressureLabel, "humidityLabel" : humidityLabel, "windSpeedLabel" : windSpeedLabel]
+        let views = ["backgroundImageView" : backgroundImageView, "cityNameLabel" : cityNameLabel, "descriptionLabel" : descriptionLabel, "temperatureLabel" : temperatureLabel, "pressureLabel" : pressureLabel, "humidityLabel" : humidityLabel, "windSpeedLabel" : windSpeedLabel]
         
+        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[backgroundImageView]|", views: views))
+        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImageView]|", views: views))
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[cityNameLabel]-15-|", views: views))
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[descriptionLabel]-15-|", views: views))
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-170-[cityNameLabel]-4-[descriptionLabel]-10-[temperatureLabel]-10-[pressureLabel]-10-[humidityLabel]-10-[windSpeedLabel]-(>=10)-|",
@@ -75,6 +81,40 @@ class AddCityView : UIView, ReactiveView {
                         
                         return ""
                     })
+                
+                for description in cityViewModel.descriptionsProperty.value! { //always is one description
+                    
+                    let weatherDesc = description as WeatherDescription
+                    let weatheridentifier = Double(weatherDesc.id)
+                    var imageName = ""
+                    
+                    if  weatheridentifier == 802 {
+                        imageName = "city802.png"
+                        
+                    } else if  weatheridentifier == 804 ||  weatheridentifier > 900 {
+                        imageName = "city501.png"
+                        
+                    } else if  weatheridentifier == 800 {
+                        imageName = "city800.png"
+                        
+                    } else if  weatheridentifier == 501 {
+                        imageName = "city501.png"
+                        
+                    }  else if  weatheridentifier < 600 && weatheridentifier >= 700 {
+                        imageName = "city721.png"
+                        
+                    } else if weatheridentifier < 400 {
+                        imageName = "city400.png"
+                        
+                    } else if weatheridentifier < 900 && weatheridentifier >= 800 {
+                        imageName = "city802.png"
+                        
+                    } else if weatheridentifier < 600 && weatheridentifier >= 700 {
+                        imageName = "city802.png"
+                    }
+                    
+                    backgroundImageView.image = UIImage(named: imageName)
+                }
             }
         }
     }

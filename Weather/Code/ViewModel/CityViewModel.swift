@@ -37,6 +37,7 @@ class CityViewModel {
         humidityProperty = ConstantProperty(String.notnilString(weather?.humidity))
         windSpeedProperty = ConstantProperty(String.notnilString(weather?.windSpeed))
         descriptionsProperty = ConstantProperty(weather?.descriptions)
+
     }
     
     init(city : City) {

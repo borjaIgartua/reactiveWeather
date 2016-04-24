@@ -20,6 +20,7 @@ class CitiesViewModel : BIViewModel  {
     let cities = MutableProperty<[CityViewModel]>([CityViewModel]())
     var deleteCommand : RACCommand?
     let deleteSignal : (Signal<AnyObject, NSError>, Observer<AnyObject, NSError>) = Signal.pipe()
+    let selectSignal : (Signal<AnyObject, NSError>, Observer<AnyObject, NSError>) = Signal.pipe()
     var currentCity : CityViewModel?
     
     init(weatherService: WeatherService, locationService: LocationService) {
@@ -64,6 +65,12 @@ class CitiesViewModel : BIViewModel  {
             }
             
             self.session?.removeCityAtIndex(indexPath.row)
+        }
+        
+        self.selectSignal.0.observeNext { (indexPath) -> () in
+//            if let cities = self.session?.cities {
+//                let city = cities[indexPath.row]
+//            }
         }
         
         loadingAlpha <~ isSearching.producer.map(enabledAlpha)

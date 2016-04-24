@@ -38,7 +38,6 @@ class AddCityViewController : BIViewController {
         }
         
         addCityView.translatesAutoresizingMaskIntoConstraints = false
-        addCityView.backgroundColor = UIColor.blueColor()
         self.view.addSubview(addCityView)
         
         searchTexField.translatesAutoresizingMaskIntoConstraints = false
@@ -47,9 +46,7 @@ class AddCityViewController : BIViewController {
         self.view.addSubview(searchTexField)
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.backgroundColor = UIColor.redColor()
-        addButton.layer.cornerRadius = 30
-        //TODO: set close title in button when no city is founded
+        addButton.setImage( UIImage(named: "PlusCircle.png"), forState: .Normal)
         self.view.addSubview(addButton)
         
         let views = ["searchTexField" : searchTexField, "addCityView" : addCityView, "addButton" : addButton]

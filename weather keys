@@ -1,0 +1,32 @@
+          "id" : 500,
+          "description" : "light rain",
+          "main" : "Rain",
+          "icon" : "10n"
+
+		  "id" : 701,
+          "description" : "mist",
+          "main" : "Mist",
+          "icon" : "50d"
+
+          "id" : 800,
+          "description" : "sky is clear",
+          "main" : "Clear",
+          "icon" : "01d"
+
+          "id" : 802,
+          "description" : "scattered clouds",
+          "main" : "Clouds",
+          "icon" : "03n"
+          
+
+          "id" : 803,
+          "description" : "broken clouds",
+          "main" : "Clouds",
+          "icon" : "04d"
+
+          "id" : 801,
+          "description" : "few clouds",
+          "main" : "Clouds",
+          "icon" : "02d"
+
+

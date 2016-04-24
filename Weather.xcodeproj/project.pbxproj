@@ -44,6 +44,7 @@
 		00EB5C9F1C71F3FD007FEAF0 /* BIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB5C9E1C71F3FD007FEAF0 /* BIViewController.swift */; };
 		00EB5CA81C71FFBA007FEAF0 /* CitiesRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EB5CA71C71FFBA007FEAF0 /* CitiesRouting.swift */; };
 		00EDEE641C770E100014D968 /* WeatherUnits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EDEE631C770E100014D968 /* WeatherUnits.swift */; };
+		00F597C41CA1AE17004B41B2 /* CityDetailRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F597C31CA1AE17004B41B2 /* CityDetailRouting.swift */; };
 		00F8691F1C98679200BBC811 /* TableViewBindingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F8691E1C98679200BBC811 /* TableViewBindingHelper.swift */; };
 		00F869211C98757900BBC811 /* ReactiveConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00F869201C98757900BBC811 /* ReactiveConstants.swift */; };
 		00FCECB51C70D9BF00EFBE12 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FCECB41C70D9BF00EFBE12 /* SwiftyJSON.swift */; };
@@ -235,6 +236,7 @@
 		00EB5C9E1C71F3FD007FEAF0 /* BIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BIViewController.swift; path = Code/Modules/Base/BIViewController.swift; sourceTree = "<group>"; };
 		00EB5CA71C71FFBA007FEAF0 /* CitiesRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CitiesRouting.swift; path = Code/Modules/Cities/Routing/CitiesRouting.swift; sourceTree = "<group>"; };
 		00EDEE631C770E100014D968 /* WeatherUnits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeatherUnits.swift; path = Code/Model/WeatherUnits.swift; sourceTree = "<group>"; };
+		00F597C31CA1AE17004B41B2 /* CityDetailRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CityDetailRouting.swift; path = Code/Modules/CityDetail/Routing/CityDetailRouting.swift; sourceTree = "<group>"; };
 		00F8691E1C98679200BBC811 /* TableViewBindingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewBindingHelper.swift; path = Code/Extensions/TableViewBindingHelper.swift; sourceTree = "<group>"; };
 		00F869201C98757900BBC811 /* ReactiveConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactiveConstants.swift; path = Code/Constants/ReactiveConstants.swift; sourceTree = "<group>"; };
 		00FCECB41C70D9BF00EFBE12 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Code/Libraries/SwiftyJSON/SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 		00EB5C921C71E4FC007FEAF0 /* CityDetail */ = {
 			isa = PBXGroup;
 			children = (
+				00F597B61CA1ADDD004B41B2 /* Routing */,
 			);
 			name = CityDetail;
 			sourceTree = "<group>";
@@ -551,6 +554,14 @@
 				00EB5C9E1C71F3FD007FEAF0 /* BIViewController.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		00F597B61CA1ADDD004B41B2 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				00F597C31CA1AE17004B41B2 /* CityDetailRouting.swift */,
+			);
+			name = Routing;
 			sourceTree = "<group>";
 		};
 		00FCECA71C70D9B500EFBE12 /* Libraries */ = {
@@ -836,6 +847,7 @@
 				00EB5C9B1C71F37E007FEAF0 /* CitiesViewController.swift in Sources */,
 				00EB5C9F1C71F3FD007FEAF0 /* BIViewController.swift in Sources */,
 				005C70BB1C73255500E1F935 /* UIKitReactive.swift in Sources */,
+				00F597C41CA1AE17004B41B2 /* CityDetailRouting.swift in Sources */,
 				00657DDA1C6FB47B00188BB7 /* Weather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -22,7 +22,7 @@ class LocationService : NSObject, CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         }
         
-        return self.rac_signalForSelector("locationManager:didUpdateLocations:", fromProtocol: CLLocationManagerDelegate.self).toSignalProducer()
+        return self.rac_signalForSelector(#selector(CLLocationManagerDelegate.locationManager(_:didUpdateLocations:)), fromProtocol: CLLocationManagerDelegate.self).toSignalProducer()
             .map({ (object) -> CLLocation in
                 
                 let tuple = object as! RACTuple

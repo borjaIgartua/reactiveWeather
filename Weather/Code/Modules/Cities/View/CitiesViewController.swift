@@ -18,7 +18,7 @@ class CitiesViewController : BIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let addButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addPressed")
+        let addButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(CitiesViewController.addPressed))
         self.navigationItem.setRightBarButtonItem(addButtonItem, animated: true)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -27,6 +27,7 @@ class CitiesViewController : BIViewController {
         self.bindingHelper = TableViewBindingHelper(tableView: self.tableView,
                                                     sourceSignal: self.viewModel.cities.producer,
                                                     cell: CityCell(style: .Default, reuseIdentifier: "CityCell"),
+                                                    selectionCommand: self.viewModel.selectSignal.1,
                                                     deletionCommand: self.viewModel.deleteSignal.1)
         
         let views = ["tableView" : tableView]
