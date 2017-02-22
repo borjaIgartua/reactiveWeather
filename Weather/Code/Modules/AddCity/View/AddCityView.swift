@@ -20,17 +20,17 @@ class AddCityView : UIView, ReactiveView {
     let windSpeedLabel = UILabel()
     
      init() {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(backgroundImageView)
         
         cityNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        cityNameLabel.textAlignment = .Center
+        cityNameLabel.textAlignment = .center
         self.addSubview(cityNameLabel)
         
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.textAlignment = .Center
+        descriptionLabel.textAlignment = .center
         self.addSubview(descriptionLabel)
         
         temperatureLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -45,14 +45,14 @@ class AddCityView : UIView, ReactiveView {
         windSpeedLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(windSpeedLabel)
         
-        let views = ["backgroundImageView" : backgroundImageView, "cityNameLabel" : cityNameLabel, "descriptionLabel" : descriptionLabel, "temperatureLabel" : temperatureLabel, "pressureLabel" : pressureLabel, "humidityLabel" : humidityLabel, "windSpeedLabel" : windSpeedLabel]
+        let views = ["backgroundImageView" : backgroundImageView, "cityNameLabel" : cityNameLabel, "descriptionLabel" : descriptionLabel, "temperatureLabel" : temperatureLabel, "pressureLabel" : pressureLabel, "humidityLabel" : humidityLabel, "windSpeedLabel" : windSpeedLabel] as [String : Any]
         
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[backgroundImageView]|", views: views))
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImageView]|", views: views))
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[cityNameLabel]-15-|", views: views))
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[descriptionLabel]-15-|", views: views))
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-170-[cityNameLabel]-4-[descriptionLabel]-10-[temperatureLabel]-10-[pressureLabel]-10-[humidityLabel]-10-[windSpeedLabel]-(>=10)-|",
-            options: .AlignAllLeft, metrics: nil, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-170-[cityNameLabel]-4-[descriptionLabel]-10-[temperatureLabel]-10-[pressureLabel]-10-[humidityLabel]-10-[windSpeedLabel]-(>=10)-|",
+            options: .alignAllLeft, metrics: nil, views: views))
     }
 
      required init?(coder aDecoder: NSCoder) {

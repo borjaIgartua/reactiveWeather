@@ -11,9 +11,9 @@ import ReactiveCocoa
 
 class CitiesViewModel : BIViewModel  {
     
-    private let weatherService : WeatherService!
-    private let locationService : LocationService!
-    private let session : Session? = LazyServiceLocator.sharedServiceLocator.getService()
+    fileprivate let weatherService : WeatherService!
+    fileprivate let locationService : LocationService!
+    fileprivate let session : Session? = LazyServiceLocator.sharedServiceLocator.getService()
     
     let isSearching = MutableProperty<Bool>(false)
     let loadingAlpha = MutableProperty<CGFloat>(ReactiveConstants.DisabledViewAlpha)
@@ -107,7 +107,7 @@ class CitiesViewModel : BIViewModel  {
         }
     }
     
-    private func enabledAlpha(searching: Bool) -> CGFloat {
+    fileprivate func enabledAlpha(_ searching: Bool) -> CGFloat {
         return searching ? ReactiveConstants.DisabledViewAlpha : ReactiveConstants.EnabledViewAlpha
     }
 }

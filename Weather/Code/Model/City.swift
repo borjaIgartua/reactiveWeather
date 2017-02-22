@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-public class City : NSObject, NSCoding {
+open class City : NSObject, NSCoding {
     
     var id : String
     var location : CLLocation?
@@ -52,29 +52,29 @@ public class City : NSObject, NSCoding {
     
 //MARK: Coding methods
     
-    public func encodeWithCoder(aCoder: NSCoder) {
+    open func encode(with aCoder: NSCoder) {
         
-        aCoder.encodeObject(self.name, forKey: "CityNameKey")
-        aCoder.encodeObject(self.id, forKey: "CityIDkey")
+        aCoder.encode(self.name, forKey: "CityNameKey")
+        aCoder.encode(self.id, forKey: "CityIDkey")
 
         let latitude : Double? = self.location?.coordinate.latitude
         if let latitude = latitude {
-            aCoder.encodeDouble(latitude, forKey: "CityLatitudeKey")
+            aCoder.encode(latitude, forKey: "CityLatitudeKey")
         }
         
         let longitude : Double? = self.location?.coordinate.longitude
         if let longitude = longitude {
-            aCoder.encodeDouble(longitude, forKey: "CityLongitudeKey")
+            aCoder.encode(longitude, forKey: "CityLongitudeKey")
         }
     }
     
     required public init(coder aDecoder: NSCoder) {
         
-        self.id = aDecoder.decodeObjectForKey("CityIDkey") as! String
-        self.name = aDecoder.decodeObjectForKey("CityNameKey") as? String
+        self.id = aDecoder.decodeObject(forKey: "CityIDkey") as! String
+        self.name = aDecoder.decodeObject(forKey: "CityNameKey") as? String
         
-        let latitude : Double? = aDecoder.decodeDoubleForKey("CityLatitudeKey")
-        let longitude : Double? = aDecoder.decodeDoubleForKey("CityLongitudeKey")
+        let latitude : Double? = aDecoder.decodeDouble(forKey: "CityLatitudeKey")
+        let longitude : Double? = aDecoder.decodeDouble(forKey: "CityLongitudeKey")
         
         if let latitude = latitude  {
             if let longitude = longitude {

@@ -11,8 +11,8 @@ import ReactiveCocoa
 
 class AddCityViewModel : BIViewModel {
     
-    private let weatherService : WeatherService!
-    private let session : Session? = LazyServiceLocator.sharedServiceLocator.getService()        
+    fileprivate let weatherService : WeatherService!
+    fileprivate let session : Session? = LazyServiceLocator.sharedServiceLocator.getService()        
     
     let searchText = MutableProperty<String>("")
     let queryExecutionTime = MutableProperty<String>("")
@@ -63,11 +63,11 @@ class AddCityViewModel : BIViewModel {
         loadingAlpha <~ isSearching.producer.map(enabledAlpha)
     }
 
-    private func enabledAlpha(searching: Bool) -> CGFloat {
+    fileprivate func enabledAlpha(_ searching: Bool) -> CGFloat {
         return searching ? ReactiveConstants.DisabledViewAlpha : ReactiveConstants.EnabledViewAlpha
     }
     
-    func addCity(city: City?) {
+    func addCity(_ city: City?) {
         session?.appendCity(city)
     }
 }

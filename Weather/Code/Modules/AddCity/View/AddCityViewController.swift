@@ -42,11 +42,11 @@ class AddCityViewController : BIViewController {
         
         searchTexField.translatesAutoresizingMaskIntoConstraints = false
         searchTexField.layer.cornerRadius = 5
-        searchTexField.backgroundColor = UIColor.grayColor()
+        searchTexField.backgroundColor = UIColor.gray
         self.view.addSubview(searchTexField)
         
         addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.setImage( UIImage(named: "PlusCircle.png"), forState: .Normal)
+        addButton.setImage( UIImage(named: "PlusCircle.png"), for: UIControlState())
         self.view.addSubview(addButton)
         
         let views = ["searchTexField" : searchTexField, "addCityView" : addCityView, "addButton" : addButton]

@@ -18,11 +18,11 @@ extension String {
     
     public var encodedQueryURL : String? {
         get {
-            return self.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+            return self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         }
     }
     
-    static func notnilString(string : String?) -> String {
+    static func notnilString(_ string : String?) -> String {
         
         if let string = string {
             return string
@@ -31,7 +31,7 @@ extension String {
         }
     }
     
-    static func notnilString(double : Double?) -> String {
+    static func notnilString(_ double : Double?) -> String {
         
         if let double = double {
             return String(format: "%.2f", double)

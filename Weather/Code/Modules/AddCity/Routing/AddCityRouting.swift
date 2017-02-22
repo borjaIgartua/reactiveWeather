@@ -17,6 +17,6 @@ class AddCityRouting {
         let viewModel = AddCityViewModel(weatherService: service)
         view.viewModel = viewModel
         
-        viewController.presentViewController(view, animated: true, completion: nil)
+        viewController.present(view, animated: true, completion: nil)
     }
 }

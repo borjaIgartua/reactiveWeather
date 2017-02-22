@@ -13,16 +13,16 @@ class CitiesViewController : BIViewController {
     var viewModel : CitiesViewModel!
     
     let tableView = UITableView()
-    private var bindingHelper: TableViewBindingHelper<CityViewModel>!
+    fileprivate var bindingHelper: TableViewBindingHelper<CityViewModel>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let addButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: #selector(CitiesViewController.addPressed))
-        self.navigationItem.setRightBarButtonItem(addButtonItem, animated: true)
+        let addButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(CitiesViewController.addPressed))
+        self.navigationItem.setRightBarButton(addButtonItem, animated: true)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         self.view.addSubview(tableView)
         self.bindingHelper = TableViewBindingHelper(tableView: self.tableView,
                                                     sourceSignal: self.viewModel.cities.producer,
@@ -37,7 +37,7 @@ class CitiesViewController : BIViewController {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
         
         viewModel.reloadData()

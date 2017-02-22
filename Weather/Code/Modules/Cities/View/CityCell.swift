@@ -19,7 +19,7 @@ class CityCell : UITableViewCell, ReactiveView  {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.selectionStyle = .None
+        self.selectionStyle = .none
         
         let contentView = self.contentView
         
@@ -35,7 +35,7 @@ class CityCell : UITableViewCell, ReactiveView  {
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(messageLabel)
         
-        let views = ["backgroundImageView" : backgroundImageView, "titleLabel" : titleLabel, "descriptionLabel" : descriptionLabel, "messageLabel" : messageLabel]
+        let views = ["backgroundImageView" : backgroundImageView, "titleLabel" : titleLabel, "descriptionLabel" : descriptionLabel, "messageLabel" : messageLabel] as [String : Any]
         
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[backgroundImageView]|", views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImageView]|", views: views))

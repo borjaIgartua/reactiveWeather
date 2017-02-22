@@ -11,7 +11,7 @@ import ReactiveCocoa
 
 class LocationService : NSObject, CLLocationManagerDelegate {
  
-    private let locationManager = CLLocationManager()
+    fileprivate let locationManager = CLLocationManager()
     
     func updateLocationSignalProducer() -> SignalProducer<CLLocation?, NSError> {
     

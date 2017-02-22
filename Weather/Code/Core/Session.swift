@@ -18,7 +18,7 @@ class Session {
         self.loadStorageData()
     }
     
-    func appendCity(city: City?) {
+    func appendCity(_ city: City?) {
         
         if let city = city {
             
@@ -34,31 +34,31 @@ class Session {
         }
     }
     
-    func removeCityAtIndex(index : Int) {        
-        self.cities?.removeAtIndex(index)
+    func removeCityAtIndex(_ index : Int) {        
+        self.cities?.remove(at: index)
     }
     
     func saveLoadedData() {
-        self.archiveData(withObject: self.cities, forKey: kSessionCitiesKey)
+        self.archiveData(withObject: self.cities as AnyObject?, forKey: kSessionCitiesKey)
     }
     
-    private func loadStorageData() {
+    fileprivate func loadStorageData() {
         self.cities = self.unarchiveDataForKey(kSessionCitiesKey) as? [City]
     }
     
-    private func archiveData(withObject object: AnyObject?, forKey key: String) {
+    fileprivate func archiveData(withObject object: AnyObject?, forKey key: String) {
         
         if let object = object {
-            let data = NSKeyedArchiver.archivedDataWithRootObject(object)
-            NSUserDefaults.standardUserDefaults().setObject(data, forKey: key)
-            NSUserDefaults.standardUserDefaults().synchronize()
+            let data = NSKeyedArchiver.archivedData(withRootObject: object)
+            UserDefaults.standard.set(data, forKey: key)
+            UserDefaults.standard.synchronize()
         }
     }
     
-    private func unarchiveDataForKey(key: String) -> AnyObject? {
+    fileprivate func unarchiveDataForKey(_ key: String) -> AnyObject? {
         
-        if let data = NSUserDefaults.standardUserDefaults().objectForKey(key) as? NSData {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(data)
+        if let data = UserDefaults.standard.object(forKey: key) as? Data {
+            return NSKeyedUnarchiver.unarchiveObject(with: data) as AnyObject?
         }
         return nil
     }

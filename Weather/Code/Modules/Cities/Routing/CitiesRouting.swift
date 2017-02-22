@@ -19,7 +19,7 @@ class CitiesRouting  {
         view.viewModel = viewModel
         
         let navigationController = UINavigationController(rootViewController: view)
-        navigationController.navigationBar.translucent = false
+        navigationController.navigationBar.isTranslucent = false
 
         window.rootViewController = navigationController
         window.makeKeyAndVisible()

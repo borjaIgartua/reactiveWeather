@@ -13,8 +13,8 @@ struct WeatherService {
     
     func fetchCurrentWeather(forLocation location:CLLocation?) -> SignalProducer<City?, NSError> {
         
-        let session = NSURLSession.sharedSession()
-        let currentWeatherURL = NSURL(string: URLRetrieveCurrentWeather, parameters: [("appid", API_WEATHER_KEY), ("lat", location?.encodedQueryURL.0), ("lon", location?.encodedQueryURL.1), ("units" , WeatherUnits.metricUnits)])!
+        let session = URLSession.shared
+        let currentWeatherURL = URL(string: URLRetrieveCurrentWeather, parameters: [("appid", API_WEATHER_KEY), ("lat", location?.encodedQueryURL.0), ("lon", location?.encodedQueryURL.1), ("units" , WeatherUnits.metricUnits)])!
         let request = NSMutableURLRequest(URL: currentWeatherURL)
         request.HTTPMethod = "GET"
         print("Request data: \n \(request)")
@@ -39,8 +39,8 @@ struct WeatherService {
     
     func fetchCurrentWeather(forCity city: String) -> SignalProducer<City?, NSError> {
         
-        let session = NSURLSession.sharedSession()
-        let currentWeatherURL = NSURL(string: URLRetrieveCurrentWeather, parameters: [("appid", API_WEATHER_KEY), ("q", city.encodedQueryURL), ("units" , WeatherUnits.metricUnits)])!
+        let session = URLSession.shared
+        let currentWeatherURL = URL(string: URLRetrieveCurrentWeather, parameters: [("appid", API_WEATHER_KEY), ("q", city.encodedQueryURL), ("units" , WeatherUnits.metricUnits)])!
         let request = NSMutableURLRequest(URL: currentWeatherURL)
         request.HTTPMethod = "GET"
         print("Request data: \n \(request)")
@@ -74,10 +74,10 @@ struct WeatherService {
             }
         }
         
-        let session = NSURLSession.sharedSession()
-        let currentWeatherURL = NSURL(string: URLRetrieveGroupWeather, parameters: [("id" , citiesID), ("appid", API_WEATHER_KEY), ("units" , WeatherUnits.metricUnits)])!
-        let request = NSMutableURLRequest(URL: currentWeatherURL)
-        request.HTTPMethod = "GET"
+        let session = URLSession.shared
+        let currentWeatherURL = URL(string: URLRetrieveGroupWeather, parameters: [("id" , citiesID), ("appid", API_WEATHER_KEY), ("units" , WeatherUnits.metricUnits)])!
+        let request = NSMutableURLRequest(url: currentWeatherURL)
+        request.httpMethod = "GET"
         print("Request data: \n \(request)")
         
         return session.rac_dataWithRequest(request)

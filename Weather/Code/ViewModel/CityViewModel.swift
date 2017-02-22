@@ -21,7 +21,7 @@ class CityViewModel {
     let windSpeedProperty : ConstantProperty<String>
     let descriptionsProperty : ConstantProperty<[WeatherDescription]?>
     
-    private let city : City
+    fileprivate let city : City
     
     init() {
         

@@ -8,14 +8,14 @@
 
 import Foundation
 
-extension NSURL {
+extension URL {
     
-    public convenience init?(string URLString: String, parameters: [(String, String?)]) {
+    public init?(string URLString: String, parameters: [(String, String?)]) {
         
         var newAbsoluteString = URLString
         var addFirstParameter = false
         
-        if !newAbsoluteString.containsString("?") {
+        if !newAbsoluteString.contains("?") {
             
             addFirstParameter = true
         }
@@ -37,6 +37,6 @@ extension NSURL {
             }
         }
         
-        self.init(string: newAbsoluteString)        
+        (self as NSURL).init(string: newAbsoluteString)        
     }
 }

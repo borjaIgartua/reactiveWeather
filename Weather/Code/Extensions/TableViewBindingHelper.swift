@@ -19,10 +19,10 @@ class TableViewBindingHelper<T: AnyObject> : NSObject {
     
     var delegate: UITableViewDelegate?
     
-    private let tableView: UITableView
-    private let templateCell: UITableViewCell
+    fileprivate let tableView: UITableView
+    fileprivate let templateCell: UITableViewCell
     
-    private let dataSource: DataSource
+    fileprivate let dataSource: DataSource
     
     //MARK: Public API
     
@@ -53,9 +53,9 @@ class TableViewBindingHelper<T: AnyObject> : NSObject {
 
 class DataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
-    private let templateCell: UITableViewCell
-    private let selectionCommand: Observer<AnyObject, NSError>?
-    private let deletionCommand: Observer<AnyObject, NSError>?
+    fileprivate let templateCell: UITableViewCell
+    fileprivate let selectionCommand: Observer<AnyObject, NSError>?
+    fileprivate let deletionCommand: Observer<AnyObject, NSError>?
     var data: [AnyObject]
     
     init(data: [AnyObject], templateCell: UITableViewCell, selectionCommand: Observer<AnyObject, NSError>? = nil, deletionCommand: Observer<AnyObject, NSError>? = nil) {
@@ -65,29 +65,29 @@ class DataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         self.deletionCommand = deletionCommand
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item: AnyObject = data[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(templateCell.reuseIdentifier!)!
+        let cell = tableView.dequeueReusableCell(withIdentifier: templateCell.reuseIdentifier!)!
         if let reactiveView = cell as? ReactiveView {
             reactiveView.bindViewModel(withViewModel: item)
         }
         return cell
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {                
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {                
         if let deletionCommand = self.deletionCommand {
             deletionCommand.sendNext(indexPath)
         }
         
-        data.removeAtIndex(indexPath.row)
-        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        data.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let selectionCommand = self.selectionCommand {
             selectionCommand.sendNext(indexPath)

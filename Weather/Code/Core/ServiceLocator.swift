@@ -15,39 +15,39 @@ protocol ServiceLocator {
 final class LazyServiceLocator : ServiceLocator {
     
     static let sharedServiceLocator = LazyServiceLocator()
-    private init(){}
+    fileprivate init(){}
     
-    private lazy var reg : Dictionary<String, RegistryRec> = [:]
+    fileprivate lazy var reg : Dictionary<String, RegistryRec> = [:]
     
     enum RegistryRec {
-        case Instance(Any)
-        case Recipe(() -> Any)
+        case instance(Any)
+        case recipe(() -> Any)
         
         func unwrap() -> Any {
             
             switch self {
                 
-            case .Instance(let instance):
+            case .instance(let instance):
                 return instance
                 
-            case .Recipe(let recipe):
+            case .recipe(let recipe):
                 return recipe()
             }
         }
     }
     
-    private func typeName(some: Any) -> String {
-        return(some is Any.Type) ? "\(some)" : "\(some.dynamicType)"
+    fileprivate func typeName(_ some: Any) -> String {
+        return(some is Any.Type) ? "\(some)" : "\(type(of: (some) as AnyObject))"
     }
     
-    func addService<T>(recipe: () -> T) {
+    func addService<T>(_ recipe: @escaping () -> T) {
         let key = typeName(T)
-        reg[key] = .Recipe(recipe)
+        reg[key] = .recipe(recipe)
     }
     
-    func addService<T>(instance: T) {
+    func addService<T>(_ instance: T) {
         let key = typeName(T)
-        reg[key] = .Instance(instance)
+        reg[key] = .instance(instance)
     }
     
     func getService<T>() -> T? {
@@ -61,7 +61,7 @@ final class LazyServiceLocator : ServiceLocator {
             
             switch registyRec {
                 
-            case .Recipe:
+            case .recipe:
                 
                 if let instance = instance {
                     addService(instance)
