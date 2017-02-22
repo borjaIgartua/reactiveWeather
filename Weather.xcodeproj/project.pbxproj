@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0021457D1E5E160100D4E359 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0021456D1E5E15DE00D4E359 /* ReactiveSwift.framework */; };
+		0021457E1E5E160100D4E359 /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0021456D1E5E15DE00D4E359 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		002DE5B31C746BDD00C5113C /* CitiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DE5B21C746BDD00C5113C /* CitiesViewModel.swift */; };
 		002DE5B61C746D2600C5113C /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DE5B51C746D2600C5113C /* LocationService.swift */; };
 		002DE5B91C74720800C5113C /* BIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002DE5B81C74720800C5113C /* BIViewModel.swift */; };
@@ -51,6 +53,62 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		002145681E5E15DE00D4E359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 002145581E5E15DE00D4E359 /* ReactiveSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D04725EA19E49ED7006002AA;
+			remoteInfo = "ReactiveSwift-macOS";
+		};
+		0021456A1E5E15DE00D4E359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 002145581E5E15DE00D4E359 /* ReactiveSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D04725F519E49ED7006002AA;
+			remoteInfo = "ReactiveSwift-macOSTests";
+		};
+		0021456C1E5E15DE00D4E359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 002145581E5E15DE00D4E359 /* ReactiveSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D047260C19E49F82006002AA;
+			remoteInfo = "ReactiveSwift-iOS";
+		};
+		0021456E1E5E15DE00D4E359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 002145581E5E15DE00D4E359 /* ReactiveSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D047261619E49F82006002AA;
+			remoteInfo = "ReactiveSwift-iOSTests";
+		};
+		002145701E5E15DE00D4E359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 002145581E5E15DE00D4E359 /* ReactiveSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A9B315541B3940610001CB9C;
+			remoteInfo = "ReactiveSwift-watchOS";
+		};
+		002145721E5E15DE00D4E359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 002145581E5E15DE00D4E359 /* ReactiveSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 57A4D2411BA13D7A00F7D4B1;
+			remoteInfo = "ReactiveSwift-tvOS";
+		};
+		002145741E5E15DE00D4E359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 002145581E5E15DE00D4E359 /* ReactiveSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7DFBED031CDB8C9500EE435B;
+			remoteInfo = "ReactiveSwift-tvOSTests";
+		};
+		0021457F1E5E160100D4E359 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 002145581E5E15DE00D4E359 /* ReactiveSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D047260B19E49F82006002AA;
+			remoteInfo = "ReactiveSwift-iOS";
+		};
 		00B09C751C6FAC2D00A90A81 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */;
@@ -195,6 +253,7 @@
 			files = (
 				00B09C9D1C6FAC8600A90A81 /* ReactiveCocoa.framework in Embed Frameworks */,
 				00B09CA21C6FAC8F00A90A81 /* Result.framework in Embed Frameworks */,
+				0021457E1E5E160100D4E359 /* ReactiveSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +261,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		002145581E5E15DE00D4E359 /* ReactiveSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveSwift.xcodeproj; path = ReactiveCocoa/Carthage/Checkouts/ReactiveSwift/ReactiveSwift.xcodeproj; sourceTree = "<group>"; };
 		002DE5B21C746BDD00C5113C /* CitiesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CitiesViewModel.swift; path = Code/Modules/Cities/ViewModel/CitiesViewModel.swift; sourceTree = "<group>"; };
 		002DE5B51C746D2600C5113C /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationService.swift; path = Code/Modules/Cities/Service/LocationService.swift; sourceTree = "<group>"; };
 		002DE5B81C74720800C5113C /* BIViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BIViewModel.swift; path = Code/Modules/Base/BIViewModel.swift; sourceTree = "<group>"; };
@@ -256,6 +316,7 @@
 			files = (
 				00B09C9C1C6FAC8600A90A81 /* ReactiveCocoa.framework in Frameworks */,
 				00B09CA11C6FAC8F00A90A81 /* Result.framework in Frameworks */,
+				0021457D1E5E160100D4E359 /* ReactiveSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +337,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		002145591E5E15DE00D4E359 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				002145691E5E15DE00D4E359 /* ReactiveSwift.framework */,
+				0021456B1E5E15DE00D4E359 /* ReactiveSwiftTests.xctest */,
+				0021456D1E5E15DE00D4E359 /* ReactiveSwift.framework */,
+				0021456F1E5E15DE00D4E359 /* ReactiveSwiftTests.xctest */,
+				002145711E5E15DE00D4E359 /* ReactiveSwift.framework */,
+				002145731E5E15DE00D4E359 /* ReactiveSwift.framework */,
+				002145751E5E15DE00D4E359 /* ReactiveSwiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		002DE5A51C746BBF00C5113C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +460,7 @@
 		00B09C6B1C6FABF800A90A81 /* ReactiveCocoa */ = {
 			isa = PBXGroup;
 			children = (
+				002145581E5E15DE00D4E359 /* ReactiveSwift.xcodeproj */,
 				00B09C811C6FAC4600A90A81 /* Result.xcodeproj */,
 				00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */,
 			);
@@ -597,6 +673,7 @@
 			dependencies = (
 				00B09C9F1C6FAC8600A90A81 /* PBXTargetDependency */,
 				00B09CA41C6FAC8F00A90A81 /* PBXTargetDependency */,
+				002145801E5E160100D4E359 /* PBXTargetDependency */,
 			);
 			name = Weather;
 			productName = Weather;
@@ -682,6 +759,10 @@
 					ProjectRef = 00B09C6C1C6FAC2C00A90A81 /* ReactiveCocoa.xcodeproj */;
 				},
 				{
+					ProductGroup = 002145591E5E15DE00D4E359 /* Products */;
+					ProjectRef = 002145581E5E15DE00D4E359 /* ReactiveSwift.xcodeproj */;
+				},
+				{
 					ProductGroup = 00B09C821C6FAC4600A90A81 /* Products */;
 					ProjectRef = 00B09C811C6FAC4600A90A81 /* Result.xcodeproj */;
 				},
@@ -696,6 +777,55 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		002145691E5E15DE00D4E359 /* ReactiveSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveSwift.framework;
+			remoteRef = 002145681E5E15DE00D4E359 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0021456B1E5E15DE00D4E359 /* ReactiveSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ReactiveSwiftTests.xctest;
+			remoteRef = 0021456A1E5E15DE00D4E359 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0021456D1E5E15DE00D4E359 /* ReactiveSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveSwift.framework;
+			remoteRef = 0021456C1E5E15DE00D4E359 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0021456F1E5E15DE00D4E359 /* ReactiveSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ReactiveSwiftTests.xctest;
+			remoteRef = 0021456E1E5E15DE00D4E359 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		002145711E5E15DE00D4E359 /* ReactiveSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveSwift.framework;
+			remoteRef = 002145701E5E15DE00D4E359 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		002145731E5E15DE00D4E359 /* ReactiveSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveSwift.framework;
+			remoteRef = 002145721E5E15DE00D4E359 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		002145751E5E15DE00D4E359 /* ReactiveSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ReactiveSwiftTests.xctest;
+			remoteRef = 002145741E5E15DE00D4E359 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		00B09C761C6FAC2D00A90A81 /* ReactiveCocoa.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -889,6 +1019,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		002145801E5E160100D4E359 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ReactiveSwift-iOS";
+			targetProxy = 0021457F1E5E160100D4E359 /* PBXContainerItemProxy */;
+		};
 		00B09C9F1C6FAC8600A90A81 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "ReactiveCocoa-iOS";
