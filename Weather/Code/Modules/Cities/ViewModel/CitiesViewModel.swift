@@ -8,6 +8,10 @@
 
 import Foundation
 import ReactiveCocoa
+import ReactiveSwift
+import UIKit
+import enum Result.NoError
+import Result
 
 class CitiesViewModel : BIViewModel  {
     
@@ -18,7 +22,6 @@ class CitiesViewModel : BIViewModel  {
     let isSearching = MutableProperty<Bool>(false)
     let loadingAlpha = MutableProperty<CGFloat>(ReactiveConstants.DisabledViewAlpha)
     let cities = MutableProperty<[CityViewModel]>([CityViewModel]())
-    var deleteCommand : RACCommand?
     let deleteSignal : (Signal<AnyObject, NSError>, Observer<AnyObject, NSError>) = Signal.pipe()
     let selectSignal : (Signal<AnyObject, NSError>, Observer<AnyObject, NSError>) = Signal.pipe()
     var currentCity : CityViewModel?
@@ -28,46 +31,67 @@ class CitiesViewModel : BIViewModel  {
         self.locationService = locationService
         super.init()
         
+        
         locationService.updateLocationSignalProducer()
-            .observeOn(UIScheduler())
-            .flatMap(FlattenStrategy.Latest) { (location) -> SignalProducer<City?, NSError> in
-                return self.weatherService.fetchCurrentWeather(forLocation: location)
+            .flatMap(FlattenStrategy.latest) { (locations) -> SignalProducer<City?, NSError> in
+                return self.weatherService.fetchCurrentWeather(forLocation: locations[0])
         }
-            .observeOn(QueueScheduler.mainQueueScheduler)
+            .observe(on: QueueScheduler.main)
             .startWithSignal { (signal, disposable) -> () in
-            
-                signal.observeNext({ (city) -> () in
+                
+                signal.observeResult({ (result) in
                     
-                    if let city = city {
+                    switch result {
+                    case let .success(city):
                         
-                        self.currentCity = CityViewModel(city: city)
-                        self.session?.appendCity(city)
-                        self.cities.value.append(self.currentCity!)
+                        if let city = city {
+                            self.currentCity = CityViewModel(city: city)
+                            self.session?.appendCity(city)
+                            self.cities.value.append(self.currentCity!)
+                            
+                            self.isSearching.value = false
+                            disposable.dispose()
+                        }
                         
-                        self.isSearching.value = false
-                        disposable.dispose()
                         
-                    } else {
-                        //TODO: handle error
+                        break
+                    case let .failure(error):
+                        print("Error received returning City: " + error.localizedDescription)
+                        break
                     }
+                    
                 })
+                
+                
                 signal.observeFailed({ (error) -> () in
                     disposable.dispose()
                     print(error)
                 })
         }
         
-        self.deleteSignal.0.observeNext { (indexPath) -> () in
+        
+        self.deleteSignal.0.observeResult { (result) -> () in
             
+            switch result {
+            case let .success(indexPath):
+                
             let cityViewModel = self.cities.value[indexPath.row]
             if self.currentCity === cityViewModel {
                 self.currentCity = nil
             }
-            
+
             self.session?.removeCityAtIndex(indexPath.row)
+            
+                
+                break
+            case let .failure(error):
+                print("Error received returning City: " + error.localizedDescription)
+                break
+            }
+
         }
         
-        self.selectSignal.0.observeNext { (indexPath) -> () in
+        self.selectSignal.0.observeResult { (indexPath) -> () in
 //            if let cities = self.session?.cities {
 //                let city = cities[indexPath.row]
 //            }
@@ -82,22 +106,29 @@ class CitiesViewModel : BIViewModel  {
             
             if cities.count > 0 {
                 weatherService.fetchGroupWeather(forCities: cities)
-                    .mapError({ _ in WeatherError.NoError.toError() })
-                    .on(next: {
+                    .mapError({ _ in WeatherError.noError.toError() })
+                    .on(starting: {
                         _ in self.isSearching.value = true
                     })
-                    .observeOn(QueueScheduler.mainQueueScheduler)
+                    .observe(on: QueueScheduler.main)
                     .startWithSignal { (signal, disposable) -> () in
                         
-                        signal.observeNext({ (cities) -> () in
-                            
-                            if let cities = cities {
-                                self.cities.value = cities.map { CityViewModel(city: $0) }
+                        signal.observeResult({ (result) -> () in
+                           
+                            switch result {
+                            case let .success(cities):
                                 
-                            } else {
-                                //TODO: handle error
+                                if let cities = cities {
+                                    self.cities.value = cities.map { CityViewModel(city: $0) }
+                                }
+    
+                                break
+                            case let .failure(error):
+                                print("Error reloading cities data: " + error.localizedDescription)
+                                break
                             }
                         })
+                        
                         signal.observeFailed({ (error) -> () in
                             disposable.dispose()
                             print(error)

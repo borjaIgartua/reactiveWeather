@@ -41,18 +41,18 @@ final class LazyServiceLocator : ServiceLocator {
     }
     
     func addService<T>(_ recipe: @escaping () -> T) {
-        let key = typeName(T)
+        let key = typeName(T.self)
         reg[key] = .recipe(recipe)
     }
     
     func addService<T>(_ instance: T) {
-        let key = typeName(T)
+        let key = typeName(T.self)
         reg[key] = .instance(instance)
     }
     
     func getService<T>() -> T? {
         
-        let key = typeName(T)
+        let key = typeName(T.self)
         var instance : T? = nil
         
         if let registyRec = reg[key] {

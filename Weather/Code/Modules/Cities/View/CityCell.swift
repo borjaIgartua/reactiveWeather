@@ -7,7 +7,9 @@
 //
 
 import UIKit
+
 import ReactiveCocoa
+import ReactiveSwift
 
 class CityCell : UITableViewCell, ReactiveView  {
     
@@ -35,7 +37,7 @@ class CityCell : UITableViewCell, ReactiveView  {
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(messageLabel)
         
-        let views = ["backgroundImageView" : backgroundImageView, "titleLabel" : titleLabel, "descriptionLabel" : descriptionLabel, "messageLabel" : messageLabel] as [String : Any]
+        let views : [String : AnyObject] = ["backgroundImageView" : backgroundImageView, "titleLabel" : titleLabel, "descriptionLabel" : descriptionLabel, "messageLabel" : messageLabel]
         
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[backgroundImageView]|", views: views))
         contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImageView]|", views: views))
@@ -85,35 +87,37 @@ class CityCell : UITableViewCell, ReactiveView  {
                 for description in cityViewModel.descriptionsProperty.value! { //always is one description
                     
                     let weatherDesc = description as WeatherDescription
-                    let weatheridentifier = Double(weatherDesc.id)
-                    var imageName = ""
-                    
-                    if  weatheridentifier == 802 {
-                        imageName = "weather802.png"
+                    if let weatheridentifier = Double(weatherDesc.id) {
                         
-                    } else if  weatheridentifier == 804 ||  weatheridentifier > 900 {
-                        imageName = "weather804.png"
+                        var imageName = ""
                         
-                    } else if  weatheridentifier == 800 {
-                        imageName = "weather800.png"
+                        if  weatheridentifier == 802 {
+                            imageName = "weather802.png"
+                            
+                        } else if  weatheridentifier == 804 ||  weatheridentifier > 900 {
+                            imageName = "weather804.png"
+                            
+                        } else if  weatheridentifier == 800 {
+                            imageName = "weather800.png"
+                            
+                        } else if  weatheridentifier == 501 {
+                            imageName = "weather501.png"
+                            
+                        }  else if  weatheridentifier < 600 && weatheridentifier >= 700 {
+                            imageName = "weather721.png"
+                            
+                        } else if weatheridentifier < 400 {
+                            imageName = "weather400.png"
+                            
+                        } else if weatheridentifier < 900 && weatheridentifier >= 800 {
+                            imageName = "weather802.png"
+                            
+                        } else if weatheridentifier < 600 && weatheridentifier >= 700 {
+                            imageName = "weather802.png"
+                        }
                         
-                    } else if  weatheridentifier == 501 {
-                        imageName = "weather501.png"
-                        
-                    }  else if  weatheridentifier < 600 && weatheridentifier >= 700 {
-                        imageName = "weather721.png"
-                        
-                    } else if weatheridentifier < 400 {
-                        imageName = "weather400.png"
-                        
-                    } else if weatheridentifier < 900 && weatheridentifier >= 800 {
-                        imageName = "weather802.png"
-                        
-                    } else if weatheridentifier < 600 && weatheridentifier >= 700 {
-                        imageName = "weather802.png"
+                        backgroundImageView.image = UIImage(named: imageName)
                     }
-                    
-                    backgroundImageView.image = UIImage(named: imageName)
                 }
             }
         }

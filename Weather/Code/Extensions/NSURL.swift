@@ -37,6 +37,6 @@ extension URL {
             }
         }
         
-        (self as NSURL).init(string: newAbsoluteString)        
+        self.init(string: newAbsoluteString)
     }
 }

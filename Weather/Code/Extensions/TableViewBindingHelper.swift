@@ -8,6 +8,7 @@
 
 import Foundation
 import ReactiveCocoa
+import ReactiveSwift
 import UIKit
 import enum Result.NoError
 
@@ -31,13 +32,13 @@ class TableViewBindingHelper<T: AnyObject> : NSObject {
         
         // create an instance of the template cell and register with the table view
         templateCell = cell
-        tableView.registerClass(cell.classForCoder.self, forCellReuseIdentifier: cell.reuseIdentifier!)
+        tableView.register(cell.classForCoder.self, forCellReuseIdentifier: cell.reuseIdentifier!)
         
         dataSource = DataSource(data: [AnyObject](), templateCell: templateCell, selectionCommand:  selectionCommand, deletionCommand: deletionCommand)
         
         super.init()
     
-        sourceSignal.startWithNext{ data in
+        sourceSignal.startWithValues{ data in
             
             self.dataSource.data = data.map({ $0 as AnyObject })
             self.tableView.reloadData()
@@ -80,7 +81,7 @@ class DataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {                
         if let deletionCommand = self.deletionCommand {
-            deletionCommand.sendNext(indexPath)
+            deletionCommand.send(value: indexPath as AnyObject)
         }
         
         data.remove(at: indexPath.row)
@@ -90,7 +91,7 @@ class DataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let selectionCommand = self.selectionCommand {
-            selectionCommand.sendNext(indexPath)
+            selectionCommand.send(value: indexPath as AnyObject)
         }
     }
     

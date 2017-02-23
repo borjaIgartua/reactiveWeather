@@ -8,6 +8,8 @@
 
 import Foundation
 import ReactiveCocoa
+import ReactiveSwift
+import UIKit
 
 class AddCityViewModel : BIViewModel {
     
@@ -28,32 +30,43 @@ class AddCityViewModel : BIViewModel {
         super.init()
                 
         searchText.producer
-            .mapError({ _ in WeatherError.NoError.toError() })
+            .mapError({ _ in WeatherError.noError.toError() })
             .filter({ (text) -> Bool in
                 return text.length > ReactiveConstants.SearchCharacterMinimum
             })
-            .throttle(ReactiveConstants.SearchThrottleTime, onScheduler: QueueScheduler.mainQueueScheduler)
-            .on(next: {
+            .throttle(ReactiveConstants.SearchThrottleTime, on: QueueScheduler.main)
+            .on(starting: {
                 _ in self.isSearching.value = true
             })
-            .flatMap(FlattenStrategy.Latest, transform: { (text) -> SignalProducer<City?, NSError> in
+            .flatMap(FlattenStrategy.latest, transform: { (text) -> SignalProducer<City?, NSError> in
                 return self.weatherService.fetchCurrentWeather(forCity: text)
             })
-            .observeOn(QueueScheduler.mainQueueScheduler)
+            .observe(on: QueueScheduler.main)
             .startWithSignal { (signal, disposable) -> () in
                 
-                signal.observeNext({ (city) -> () in
+                signal.observeResult({ (result) -> () in
                     
-                    if let city = city {
+                    switch result {
+                    case let .success(city):
                         
-                        self.currentCity = city
-                        self.isSearching.value = false
-                        self.cityProperty.value = CityViewModel(city: city)
+                        if let city = city {
+
+                            self.currentCity = city
+                            self.isSearching.value = false
+                            self.cityProperty.value = CityViewModel(city: city)
+
+                        } else {
+                            //TODO: handle error
+                        }
                         
-                    } else {
-                        //TODO: handle error
+                        break
+                    case let .failure(error):
+                        print("Error received returning City: " + error.localizedDescription)
+                        break
                     }
+
                 })
+                
                 signal.observeFailed({ (error) -> () in
                     disposable.dispose()
                     print(error)

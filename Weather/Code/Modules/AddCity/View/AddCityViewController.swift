@@ -8,6 +8,7 @@
 
 import UIKit
 import ReactiveCocoa
+import ReactiveSwift
 
 class AddCityViewController : BIViewController {
     var viewModel : AddCityViewModel!
@@ -23,17 +24,18 @@ class AddCityViewController : BIViewController {
 //        searchTexField.rac_enabled <~ viewModel.isSearching.producer.map { !$0 }
         addCityView.rac_alpha <~ viewModel.loadingAlpha.producer.map { $0 }
         
-        addButton.rac_signalForControlEvents(.TouchUpInside)
-            .toSignalProducer()
-            .map { (button) -> City? in
-                return self.viewModel.currentCity
-            }
-            .startWithNext { (city) -> () in
-                self.viewModel.addCity(city)
-                self .dismissViewControllerAnimated(true, completion: nil)
-            }
+        let producer = SignalProducer(addButton.reactive.controlEvents(UIControlEvents.touchUpInside))
 
-        viewModel.cityProperty.producer.startWithNext { (cityViewModel) -> () in
+        producer.map { (button) -> City? in
+            return self.viewModel.currentCity
+            
+        }.startWithValues { (city) in
+            self.viewModel.addCity(city)
+            self .dismiss(animated: true, completion: nil)
+        }
+        
+
+        viewModel.cityProperty.producer.startWithValues { (cityViewModel) -> () in
             self.addCityView.bindViewModel(withViewModel: cityViewModel)
         }
         
@@ -49,7 +51,7 @@ class AddCityViewController : BIViewController {
         addButton.setImage( UIImage(named: "PlusCircle.png"), for: UIControlState())
         self.view.addSubview(addButton)
         
-        let views = ["searchTexField" : searchTexField, "addCityView" : addCityView, "addButton" : addButton]
+        let views : [String : AnyObject] = ["searchTexField" : searchTexField, "addCityView" : addCityView, "addButton" : addButton]
         
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-12-[searchTexField]-12-|", views: views))
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-44-[searchTexField(==34)]-20-[addButton(==60)]-(>=10)-|", views: views))

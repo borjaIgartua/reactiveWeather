@@ -8,6 +8,8 @@
 
 import Foundation
 import ReactiveCocoa
+import ReactiveSwift
+import CoreLocation
 
 struct WeatherService {
     
@@ -15,52 +17,49 @@ struct WeatherService {
         
         let session = URLSession.shared
         let currentWeatherURL = URL(string: URLRetrieveCurrentWeather, parameters: [("appid", API_WEATHER_KEY), ("lat", location?.encodedQueryURL.0), ("lon", location?.encodedQueryURL.1), ("units" , WeatherUnits.metricUnits)])!
-        let request = NSMutableURLRequest(URL: currentWeatherURL)
-        request.HTTPMethod = "GET"
+        var request = URLRequest(url: currentWeatherURL)
+        request.httpMethod = "GET"
         print("Request data: \n \(request)")
         
-        return session.rac_dataWithRequest(request)
-            .map { data, response in
-                
-                let json = JSON(data: data)
-                if json != nil {
-                    print("Data received: \n \(json)")
-                    return City(responseData: json)
-                    
-                } else {
-                    return nil
-                }
+        return session.reactive.data(with: request)
+            .map { (data, response) -> City? in
+
+            let json = JSON(data: data)
+            if json != JSON.null {
+                print("Data received: \n \(json)")
+                return City(responseData: json)
+
+            } else {
+                return nil
             }
-            .retry(3)
-            .mapError { error in
-                return error
+        }.retry(upTo: 3).mapError { (error) -> NSError in
+            return NSError()
         }
+        
     }
     
     func fetchCurrentWeather(forCity city: String) -> SignalProducer<City?, NSError> {
         
         let session = URLSession.shared
         let currentWeatherURL = URL(string: URLRetrieveCurrentWeather, parameters: [("appid", API_WEATHER_KEY), ("q", city.encodedQueryURL), ("units" , WeatherUnits.metricUnits)])!
-        let request = NSMutableURLRequest(URL: currentWeatherURL)
-        request.HTTPMethod = "GET"
+        var request = URLRequest(url: currentWeatherURL)
+        request.httpMethod = "GET"
         print("Request data: \n \(request)")
         
-        return session.rac_dataWithRequest(request)
-            .map { data, response in
+        return session.reactive.data(with: request)
+            .map { (data, response) -> City? in
                 
                 let json = JSON(data: data)
-                if json != nil {
+                if json != JSON.null {
                     print("Data received: \n \(json)")
                     return City(responseData: json)
                     
                 } else {
                     return nil
                 }
-            }
-            .retry(3)
-            .mapError { error in
-                return error
-            }
+            }.retry(upTo: 3).mapError { (error) -> NSError in
+                return NSError()
+        }
     }
     
     func fetchGroupWeather(forCities cities:[City]) -> SignalProducer<[City]?, NSError> {
@@ -76,24 +75,24 @@ struct WeatherService {
         
         let session = URLSession.shared
         let currentWeatherURL = URL(string: URLRetrieveGroupWeather, parameters: [("id" , citiesID), ("appid", API_WEATHER_KEY), ("units" , WeatherUnits.metricUnits)])!
-        let request = NSMutableURLRequest(url: currentWeatherURL)
+        var request = URLRequest(url: currentWeatherURL)
         request.httpMethod = "GET"
         print("Request data: \n \(request)")
         
-        return session.rac_dataWithRequest(request)
-            .map { data, response in
-                
+        return session.reactive.data(with: request)
+            .map { (data, response) -> [City]? in
+            
                 let json = JSON(data: data)
-                if json != nil {
+                if json != JSON.null {
                     print("Data received: \n \(json)")
-                    
+
                     let citiesData = json["list"].array
                     var cities = [City]()
                     if let citiesData = citiesData {
-                        
+
                         cities = citiesData.map { city in City(responseData: city) }
                         return cities
-                        
+
                     } else {
                         return nil
                     }
@@ -101,10 +100,8 @@ struct WeatherService {
                 } else {
                     return nil
                 }
-            }
-            .retry(3)
-            .mapError { error in
-                return error
+            }.retry(upTo: 3).mapError { (error) -> NSError in
+                return NSError()
         }
     }
 }

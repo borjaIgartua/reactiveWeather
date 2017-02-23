@@ -9,6 +9,7 @@
 
 import UIKit
 import ReactiveCocoa
+import ReactiveSwift
 
 struct AssociationKey {
     static var hidden: UInt8 = 1
@@ -30,7 +31,7 @@ func lazyMutableProperty<T>(_ host: AnyObject, key: UnsafeRawPointer, setter: @e
     return lazyAssociatedProperty(host, key: key) {
         let property = MutableProperty<T>(getter())
         property.producer
-            .startWithNext{
+            .startWithValues{
                 newValue in
                 setter(newValue)
         }
@@ -45,7 +46,7 @@ extension UIView {
     }
     
     public var rac_hidden: MutableProperty<Bool> {
-        return lazyMutableProperty(self, key: &AssociationKey.hidden, setter: { self.hidden = $0 }, getter: { self.hidden  })
+        return lazyMutableProperty(self, key: &AssociationKey.hidden, setter: { self.isHidden = $0 }, getter: { self.isHidden  })
     }
 }
 
@@ -59,11 +60,11 @@ extension UITextField {
     public var rac_text: MutableProperty<String> {
         return lazyAssociatedProperty(self, key: &AssociationKey.text) {
             
-            self.addTarget(self, action: #selector(UITextField.changed), forControlEvents: UIControlEvents.EditingChanged)
+            self.addTarget(self, action: #selector(UITextField.changed), for: UIControlEvents.editingChanged)
             
             let property = MutableProperty<String>(self.text ?? "")
             property.producer
-                .startWithNext {
+                .startWithValues {
                     newValue in
                     self.text = newValue
             }
@@ -78,6 +79,6 @@ extension UITextField {
 
 extension UIControl {
     public var rac_enabled : MutableProperty<Bool> {
-        return lazyMutableProperty(self, key: &AssociationKey.enabled, setter: { self.enabled = $0 }, getter: { self.enabled })
+        return lazyMutableProperty(self, key: &AssociationKey.enabled, setter: { self.isEnabled = $0 }, getter: { self.isEnabled })
     }
 }

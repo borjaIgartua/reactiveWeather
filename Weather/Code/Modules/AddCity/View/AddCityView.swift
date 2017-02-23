@@ -8,6 +8,7 @@
 
 import UIKit
 import ReactiveCocoa
+import ReactiveSwift
 
 class AddCityView : UIView, ReactiveView {
     
@@ -45,7 +46,7 @@ class AddCityView : UIView, ReactiveView {
         windSpeedLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(windSpeedLabel)
         
-        let views = ["backgroundImageView" : backgroundImageView, "cityNameLabel" : cityNameLabel, "descriptionLabel" : descriptionLabel, "temperatureLabel" : temperatureLabel, "pressureLabel" : pressureLabel, "humidityLabel" : humidityLabel, "windSpeedLabel" : windSpeedLabel] as [String : Any]
+        let views : [String: AnyObject] = ["backgroundImageView" : backgroundImageView, "cityNameLabel" : cityNameLabel, "descriptionLabel" : descriptionLabel, "temperatureLabel" : temperatureLabel, "pressureLabel" : pressureLabel, "humidityLabel" : humidityLabel, "windSpeedLabel" : windSpeedLabel]
         
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[backgroundImageView]|", views: views))
         self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImageView]|", views: views))
@@ -85,35 +86,37 @@ class AddCityView : UIView, ReactiveView {
                 for description in cityViewModel.descriptionsProperty.value! { //always is one description
                     
                     let weatherDesc = description as WeatherDescription
-                    let weatheridentifier = Double(weatherDesc.id)
-                    var imageName = ""
-                    
-                    if  weatheridentifier == 802 {
-                        imageName = "city802.png"
+                    if let weatheridentifier = Double(weatherDesc.id) {
                         
-                    } else if  weatheridentifier == 804 ||  weatheridentifier > 900 {
-                        imageName = "city501.png"
+                        var imageName = ""
                         
-                    } else if  weatheridentifier == 800 {
-                        imageName = "city800.png"
+                        if  weatheridentifier == 802 {
+                            imageName = "city802.png"
+                            
+                        } else if  weatheridentifier == 804 ||  weatheridentifier > 900 {
+                            imageName = "city501.png"
+                            
+                        } else if  weatheridentifier == 800 {
+                            imageName = "city800.png"
+                            
+                        } else if  weatheridentifier == 501 {
+                            imageName = "city501.png"
+                            
+                        }  else if  weatheridentifier < 600 && weatheridentifier >= 700 {
+                            imageName = "city721.png"
+                            
+                        } else if weatheridentifier < 400 {
+                            imageName = "city400.png"
+                            
+                        } else if weatheridentifier < 900 && weatheridentifier >= 800 {
+                            imageName = "city802.png"
+                            
+                        } else if weatheridentifier < 600 && weatheridentifier >= 700 {
+                            imageName = "city802.png"
+                        }
                         
-                    } else if  weatheridentifier == 501 {
-                        imageName = "city501.png"
-                        
-                    }  else if  weatheridentifier < 600 && weatheridentifier >= 700 {
-                        imageName = "city721.png"
-                        
-                    } else if weatheridentifier < 400 {
-                        imageName = "city400.png"
-                        
-                    } else if weatheridentifier < 900 && weatheridentifier >= 800 {
-                        imageName = "city802.png"
-                        
-                    } else if weatheridentifier < 600 && weatheridentifier >= 700 {
-                        imageName = "city802.png"
+                        backgroundImageView.image = UIImage(named: imageName)
                     }
-                    
-                    backgroundImageView.image = UIImage(named: imageName)
                 }
             }
         }

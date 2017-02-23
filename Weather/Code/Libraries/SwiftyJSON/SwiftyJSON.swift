@@ -1025,7 +1025,7 @@ extension JSON {
     {
         get
         {
-            return self.number?.int32Value
+            return self.number?.intValue
         }
         set
         {

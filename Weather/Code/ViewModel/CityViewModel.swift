@@ -7,19 +7,19 @@
 //
 
 import Foundation
-import ReactiveCocoa
+import ReactiveSwift
 import CoreLocation
 
 class CityViewModel {
     
-    let nameProperty : ConstantProperty<String>
-    let locationProperty : ConstantProperty<CLLocation?>
-    
-    let temperatureProperty : ConstantProperty<String>
-    let pressureProperty : ConstantProperty<String>
-    let humidityProperty : ConstantProperty<String>
-    let windSpeedProperty : ConstantProperty<String>
-    let descriptionsProperty : ConstantProperty<[WeatherDescription]?>
+    let nameProperty : Property<String>
+    let locationProperty : Property<CLLocation?>
+
+    let temperatureProperty : Property<String>
+    let pressureProperty : Property<String>
+    let humidityProperty : Property<String>
+    let windSpeedProperty : Property<String>
+    let descriptionsProperty : Property<[WeatherDescription]?>
     
     fileprivate let city : City
     
@@ -27,31 +27,31 @@ class CityViewModel {
         
         self.city = City()
         
-        nameProperty = ConstantProperty(String.notnilString(city.name))
-        locationProperty = ConstantProperty(city.location)
-        
+        nameProperty = Property(value: String.notnilString(city.name))
+        locationProperty = Property(value:city.location)
+
         let weather = city.weather
         
-        temperatureProperty = ConstantProperty(String.notnilString(weather?.temperature))
-        pressureProperty = ConstantProperty(String.notnilString(weather?.pressure))
-        humidityProperty = ConstantProperty(String.notnilString(weather?.humidity))
-        windSpeedProperty = ConstantProperty(String.notnilString(weather?.windSpeed))
-        descriptionsProperty = ConstantProperty(weather?.descriptions)
+        temperatureProperty = Property(value: String.notnilString(weather?.temperature))
+        pressureProperty = Property(value: String.notnilString(weather?.pressure))
+        humidityProperty = Property(value: String.notnilString(weather?.humidity))
+        windSpeedProperty = Property(value: String.notnilString(weather?.windSpeed))
+        descriptionsProperty = Property(value: weather?.descriptions)
 
     }
     
     init(city : City) {
         self.city = city
         
-        nameProperty = ConstantProperty(String.notnilString(city.name))
-        locationProperty = ConstantProperty(city.location)
+        nameProperty = Property(value:String.notnilString(city.name))
+        locationProperty = Property(value:city.location)
         
         let weather = city.weather
         
-        temperatureProperty = ConstantProperty(String.notnilString(weather?.temperature))
-        pressureProperty = ConstantProperty(String.notnilString(weather?.pressure))
-        humidityProperty = ConstantProperty(String.notnilString(weather?.humidity))
-        windSpeedProperty = ConstantProperty(String.notnilString(weather?.windSpeed))
-        descriptionsProperty = ConstantProperty(weather?.descriptions)
+        temperatureProperty = Property(value: String.notnilString(weather?.temperature))
+        pressureProperty = Property(value: String.notnilString(weather?.pressure))
+        humidityProperty = Property(value: String.notnilString(weather?.humidity))
+        windSpeedProperty = Property(value: String.notnilString(weather?.windSpeed))
+        descriptionsProperty = Property(value: weather?.descriptions)
     }
 }

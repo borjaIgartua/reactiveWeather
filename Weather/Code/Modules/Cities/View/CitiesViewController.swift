@@ -8,6 +8,7 @@
 
 import UIKit
 import ReactiveCocoa
+import ReactiveSwift
 
 class CitiesViewController : BIViewController {
     var viewModel : CitiesViewModel!
@@ -26,7 +27,7 @@ class CitiesViewController : BIViewController {
         self.view.addSubview(tableView)
         self.bindingHelper = TableViewBindingHelper(tableView: self.tableView,
                                                     sourceSignal: self.viewModel.cities.producer,
-                                                    cell: CityCell(style: .Default, reuseIdentifier: "CityCell"),
+                                                    cell: CityCell(style: .default, reuseIdentifier: "CityCell"),
                                                     selectionCommand: self.viewModel.selectSignal.1,
                                                     deletionCommand: self.viewModel.deleteSignal.1)
         
